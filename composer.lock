@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "869e557dffb75c133634aed9ae2ea09c",
+    "content-hash": "d62e93f1350a48101b54f1e17bae1ca6",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -6019,6 +6019,48 @@
             "time": "2021-06-04T12:00:00+00:00"
         },
         {
+            "name": "frequenc1/newage-ipsum",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/frequenc1/newage-ipsum.git",
+                "reference": "d73972de8057cbed4909855e73075856a8ecf45e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/frequenc1/newage-ipsum/zipball/d73972de8057cbed4909855e73075856a8ecf45e",
+                "reference": "d73972de8057cbed4909855e73075856a8ecf45e",
+                "shasum": ""
+            },
+            "require": {
+                "fzaninotto/faker": "~1",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "NewAgeIpsum\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Jason Soares",
+                    "email": "jsoares@theexperiment.org"
+                }
+            ],
+            "description": "A new aged ipsum generator inspired/ported to php by Seb Pearce https://github.com/sebpearce/bullshit",
+            "support": {
+                "issues": "https://github.com/frequenc1/newage-ipsum/issues",
+                "source": "https://github.com/frequenc1/newage-ipsum/tree/master"
+            },
+            "time": "2014-08-14T06:53:41+00:00"
+        },
+        {
             "name": "fzaninotto/faker",
             "version": "dev-master",
             "source": {
@@ -8117,7 +8159,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "frequenc1/newage-ipsum": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

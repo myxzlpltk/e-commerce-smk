@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use NewAgeIpsum\NewAgeProvider;
 
 class ProductFactory extends Factory
 {
@@ -21,6 +22,8 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
+        $this->faker->addProvider(new NewAgeProvider($this->faker));
+
         return [
             'name' => $this->faker->sentence,
             'description' => $this->faker->sentence(4),
