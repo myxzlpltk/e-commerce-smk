@@ -4,24 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Scout\Searchable;
 
-class Seller extends Model
-{
-    use HasFactory, Searchable;
+class Seller extends Model{
 
-    public function toSearchableArray(){
-        return [
-            'store_name' => $this->store_name,
-            'phone_number' => $this->phone_number,
-            'address' => $this->address,
-            'products' => $this->products->pluck('name')->toArray()
-        ];
-    }
-
-    protected function makeAllSearchableUsing($query){
-        return $this->with('products');
-    }
+    use HasFactory;
 
     public function bank(){
         return $this->belongsTo('App\Models\Bank');
