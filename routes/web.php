@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,77 +15,73 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@welcome')->name('home');
+Route::get('/', [HomeController::class, 'welcome'])->name('home');
 
-Route::get('login/google', 'LoginController@redirectToProvider')->name('login.google');
-Route::get('login/google/callback', 'LoginController@handleProviderCallback')->name('login.google.callback');
-Route::get('register/google', 'RegisterController@redirectToProvider')->name('register.google');
-Route::get('register/google/callback', 'RegisterController@handleProviderCallback')->name('register.google.callback');
+Route::get('login/google', [LoginController::class, 'redirectToProvider'])->name('login.google');
+Route::get('login/google/callback', [LoginController::class, 'handleProviderCallback'])->name('login.google.callback');
+Route::get('register/google', [RegisterController::class, 'redirectToProvider'])->name('register.google');
+Route::get('register/google/callback', [RegisterController::class, 'handleProviderCallback'])->name('register.google.callback');
 
 Route::middleware('can:isBuyerOrGuest')->group(function (){
-    Route::get('search', 'ProductController@search')->name('search');
-    Route::get('cart', 'CartController@index')->name('carts.index');
-    Route::get('cart/{product}', 'CartController@store')->name('carts.add');
-    Route::delete('cart/{cart}', 'CartController@destroy')->name('carts.destroy');
-    Route::patch('cart/{cart}', 'CartController@update')->name('carts.update');
-    Route::get('sellers/{seller}', 'SellerController@show')->name('sellers.show');
+    Route::get('search', [ProductController::class, 'search'])->name('search');
+    Route::get('cart', [CartController::class, 'index'])->name('carts.index');
+    Route::get('cart/{product}', [CartController::class, 'store'])->name('carts.add');
+    Route::delete('cart/{cart}', [CartController::class, 'destroy'])->name('carts.destroy');
+    Route::patch('cart/{cart}', [CartController::class, 'update'])->name('carts.update');
+    Route::get('sellers/{seller}', [SellerController::class, 'show'])->name('sellers.show');
 });
 
 Route::middleware('auth')->group(function (){
 
-    Route::get('login/redirect', 'LoginController@redirectToHome')->name('login.redirect');
+    Route::get('login/redirect', [LoginController::class, 'redirectToHome'])->name('login.redirect');
 
     Route::prefix('profile/')->group(function (){
-        Route::get('/', 'ProfileController@profile')->name('profile');
-        Route::put('password', 'ProfileController@addPassword')->name('profile.password');
-        Route::get('google', 'ProfileController@redirectToProvider')->name('profile.google');
-        Route::get('google/avatar', 'ProfileController@showAvatar')->name('profile.google.avatar');
-        Route::get('google/callback', 'ProfileController@handleProviderCallback')->name('profile.google.callback');
-        Route::get('google/disconnect', 'ProfileController@disconnectProvider')->name('profile.google.disconnect');
-        Route::post('seller', 'ProfileController@updateSeller')->name('profile.seller')->middleware('can:isSeller');
-        Route::post('buyer', 'ProfileController@updateBuyer')->name('profile.buyer')->middleware('can:isBuyer');
+        Route::get('/', [ProfileController::class, 'profile'])->name('profile');
+        Route::put('password', [ProfileController::class, 'addPassword'])->name('profile.password');
+        Route::get('google', [ProfileController::class, 'redirectToProvider'])->name('profile.google');
+        Route::get('google/avatar', [ProfileController::class, 'showAvatar'])->name('profile.google.avatar');
+        Route::get('google/callback', [ProfileController::class, 'handleProviderCallback'])->name('profile.google.callback');
+        Route::get('google/disconnect', [ProfileController::class, 'disconnectProvider'])->name('profile.google.disconnect');
+        Route::post('seller', [ProfileController::class, 'updateSeller'])->name('profile.seller')->middleware('can:isSeller');
+        Route::post('buyer', [ProfileController::class, 'updateBuyer'])->name('profile.buyer')->middleware('can:isBuyer');
     });
 
-    Route::middleware('can:isAdmin')->group(function (){
+    Route::middleware('can:isAdminOrSellerHasStore')->prefix('manage')->group(function (){
+        Route::get('/', [Manage\DashboardController::class, 'index'])->name('manage');
 
-    });
-
-    Route::middleware('can:isAdminOrSellerHasStore')->prefix('manage')->namespace('Manage')->group(function (){
-        Route::get('/', 'DashboardController@index')->name('manage');
-
-        Route::get('users/{user}', 'UserController@show')->name('manage.users.show');
-        Route::resource('buyers', BuyerController::class, ['as' => 'manage'])->only(['index']);
-        Route::resource('sellers', SellerController::class, ['as' => 'manage'])->only(['index']);
+        Route::get('users/{user}', [Manage\UserController::class, 'show'])->name('manage.users.show');
+        Route::resource('buyers', Manage\BuyerController::class, ['as' => 'manage'])->only(['index']);
+        Route::resource('sellers', Manage\SellerController::class, ['as' => 'manage'])->only(['index']);
 
         Route::resource('orders', OrderController::class, ['as' => 'manage'])->only(['index', 'show']);
-        Route::patch('orders/{order}/payment/deny', 'OrderController@denyPayment')->name('manage.order.deny-payment');
-        Route::patch('orders/{order}/payment/accept', 'OrderController@acceptPayment')->name('manage.order.accept-payment');
-        Route::patch('orders/{order}/payment/deliver', 'OrderController@deliver')->name('manage.order.deliver');
-        Route::patch('orders/{order}/payment/delivery-complete', 'OrderController@deliveryComplete')->name('manage.order.delivery-complete');
-        Route::patch('orders/{order}/payment/cancel', 'OrderController@cancel')->name('manage.order.cancel');
-        Route::patch('orders/{order}/payment/request-refund', 'OrderController@requestRefund')->name('manage.order.request-refund');
-        Route::patch('orders/{order}/payment/refund', 'OrderController@refund')->name('manage.order.refund');
-        Route::patch('orders/{order}/payment/refund-complete', 'OrderController@refundComplete')->name('manage.order.refund-complete');
+        Route::patch('orders/{order}/payment/deny', [Manage\OrderController::class, 'denyPayment'])->name('manage.order.deny-payment');
+        Route::patch('orders/{order}/payment/accept', [Manage\OrderController::class, 'acceptPayment'])->name('manage.order.accept-payment');
+        Route::patch('orders/{order}/payment/deliver', [Manage\OrderController::class, 'deliver'])->name('manage.order.deliver');
+        Route::patch('orders/{order}/payment/delivery-complete', [Manage\OrderController::class, 'deliveryComplete'])->name('manage.order.delivery-complete');
+        Route::patch('orders/{order}/payment/cancel', [Manage\OrderController::class, 'cancel'])->name('manage.order.cancel');
+        Route::patch('orders/{order}/payment/request-refund', [Manage\OrderController::class, 'requestRefund'])->name('manage.order.request-refund');
+        Route::patch('orders/{order}/payment/refund', [Manage\OrderController::class, 'refund'])->name('manage.order.refund');
+        Route::patch('orders/{order}/payment/refund-complete', [Manage\OrderController::class, 'refundComplete'])->name('manage.order.refund-complete');
 
         Route::resource('products', ProductController::class, ['as' => 'manage']);
     });
 
-    Route::middleware('can:isSellerHasStore')->prefix('manage')->namespace('Manage')->group(function (){
-        Route::resource('categories', CategoryController::class, ['as' => 'manage']);
+    Route::middleware('can:isSellerHasStore')->prefix('manage')->group(function (){
+        Route::resource('categories', Manage\CategoryController::class, ['as' => 'manage']);
 
-        Route::patch('products/{product}/update-stock', 'ProductController@updateStock')->name('manage.products.update-stock');
-        Route::get('open-hours', 'DayController@index')->name('manage.open-hours.index');
-        Route::patch('open-hours', 'DayController@update')->name('manage.open-hours.update');
+        Route::patch('products/{product}/update-stock', [Manage\ProductController::class, 'updateStock'])->name('manage.products.update-stock');
+        Route::get('open-hours', [Manage\DayController::class, 'index'])->name('manage.open-hours.index');
+        Route::patch('open-hours', [Manage\DayController::class, 'update'])->name('manage.open-hours.update');
     });
 
     Route::middleware('can:isBuyerRegistered')->group(function (){
-        Route::get('orders/{type?}', 'OrderController@index')->name('orders.index');
-        Route::get('orders/cart/{seller}', 'OrderController@create')->name('orders.create');
-        Route::get('orders/detail/{order}', 'OrderController@show')->name('orders.show');
-        Route::patch('orders/detail/{order}/payment', 'OrderController@updatePayment')->name('orders.payment');
-        Route::patch('orders/detail/{order}/payment/delivery-complete', 'Manage\OrderController@deliveryComplete')->name('order.delivery-complete');
-        Route::patch('orders/detail/{order}/payment/cancel', 'Manage\OrderController@cancel')->name('order.cancel');
-        Route::patch('orders/detail/{order}/payment/request-refund', 'Manage\OrderController@requestRefund')->name('order.request-refund');
-        Route::patch('orders/detail/{order}/payment/refund-complete', 'Manage\OrderController@refundComplete')->name('order.refund-complete');
+        Route::get('orders/{type?}', [OrderController::class, 'index'])->name('orders.index');
+        Route::get('orders/cart/{seller}', [OrderController::class, 'create'])->name('orders.create');
+        Route::get('orders/detail/{order}', [OrderController::class, 'show'])->name('orders.show');
+        Route::patch('orders/detail/{order}/payment', [OrderController::class, 'updatePayment'])->name('orders.payment');
+        Route::patch('orders/detail/{order}/payment/delivery-complete', [Manage\OrderController::class, 'deliveryComplete'])->name('order.delivery-complete');
+        Route::patch('orders/detail/{order}/payment/cancel', [Manage\OrderController::class, 'cancel'])->name('order.cancel');
+        Route::patch('orders/detail/{order}/payment/request-refund', [Manage\OrderController::class, 'requestRefund'])->name('order.request-refund');
+        Route::patch('orders/detail/{order}/payment/refund-complete', [Manage\OrderController::class, 'refundComplete'])->name('order.refund-complete');
     });
 });
