@@ -57,4 +57,12 @@
 @endsection
 
 @push('scripts')
+    <script>
+        $(document).ready(function (){
+            if(window.location.hash.startsWith('#products-')){
+                id = $(window.location.hash).closest('.tab-pane').attr('id')
+                $('[href="#'+ id +'"]').tab('show')
+            }
+        })
+    </script>
 @endpush
