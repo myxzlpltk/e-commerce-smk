@@ -177,7 +177,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\UserServiceProvider::class,
 
     ],
 
@@ -228,7 +227,6 @@ return [
         'Session' => Illuminate\Support\Facades\Session::class,
         'Storage' => Illuminate\Support\Facades\Storage::class,
         'Str' => Illuminate\Support\Str::class,
-        'UserHelp' => App\Helpers\User::class,
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,

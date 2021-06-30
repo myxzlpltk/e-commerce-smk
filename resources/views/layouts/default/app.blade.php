@@ -1,71 +1,101 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="ltr">
+<!doctype html>
+<html class="no-js" lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'e-Commerce SMK') }} - @yield('title', 'Title')</title>
 
-    <title>{{ config('app.name', 'UMKM Digital') }} - @yield('title', 'Title')</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
-    <!-- Favicon -->
-    <link href="{{ asset('favicon.ico') }}" rel="shortcut icon" type="image/ico">
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-
-    <!-- Icons -->
-    <link href="{{ asset('vendor/nucleo/css/nucleo.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/owlcarousel/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/slicknav/slicknav.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/animate.css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/magnific-popup/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/@fortawesome/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/slick/slick.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/nice-select/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <!-- Custom Stylesheets -->
     @stack('stylesheets')
-
-    <!-- Argon CSS -->
-    <link type="text/css" href="{{ asset('css/argon.min.css') }}" rel="stylesheet">
 </head>
-<body class="@yield('body.className')">
+<body>
 
-    @section('simple')
-        <div class="scrollbar-inner"></div>
-        <!-- Navbar -->
-        @include('layouts.default.navbar')
-
-        <!-- Main content -->
-        <div class="main-content">
-            <!-- Header -->
-            @yield('header')
-
-            <!-- Page content -->
-            @yield('content')
+    <!--? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{{ asset('img/unit/lambang-um.png') }}" alt="">
+                </div>
+            </div>
         </div>
+    </div>
+    <!-- Preloader Start -->
 
-        <!-- Footer -->
-        @include('layouts.default.footer')
-    @show
+    <!-- Navbar -->
+    @include('layouts.default.navbar')
+
+    <!-- Main content -->
+    <main>
+
+    </main>
+    <div class="main-content">
+        <!-- Header -->
+        @yield('header')
+
+        <!-- Page content -->
+        @yield('content')
+    </div>
+
+    <!-- Footer -->
+    @include('layouts.default.footer')
 
     <!-- Modals -->
+    <div class="search-model-box">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-btn">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Searching key.....">
+            </form>
+        </div>
+    </div>
     @stack('modals')
 
-    <!-- Core -->
+    <script src="{{ asset('vendor/jquery/dist/modernizr-3.5.0.min.js') }}"></script>
+    <!-- Jquery, Popper, Bootstrap -->
     <script src="{{ asset('vendor/jquery/dist/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendor/popperjs/popper.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="{{ asset('vendor/slicknav/jquery.slicknav.min.js') }}"></script>
 
-    <!-- JSCookie -->
-    <script src="{{ asset('vendor/js-cookie/js.cookie.js') }}"></script>
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="{{ asset('vendor/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('vendor/slick/slick.min.js') }}"></script>
 
-    <script src="{{ asset('vendor/jquery.scrollbar/jquery.scrollbar.min.js') }}"></script>
-    <script src="{{ asset('vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js') }}"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="{{ asset('vendor/wowjs/wow.min.js') }}"></script>
+    <script src="{{ asset('vendor/animated-headline/animated.headline.js') }}"></script>
+    <script src="{{ asset('vendor/magnific-popup/jquery.magnific-popup.js') }}"></script>
+
+    <!-- Scrollup, nice-select, sticky -->
+    <script src="{{ asset('vendor/jquery-scrollup/jquery.scrollUp.min.js') }}"></script>
+    <script src="{{ asset('vendor/nice-select/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery-sticky/jquery.sticky.js') }}"></script>
+
+    <!-- Jquery Plugins, main Jquery -->
+    <script src="{{ asset('js/plugins.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Custom Scripts -->
-    <script src="{{ asset('vendor/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
     @stack('scripts')
-
-    <!-- Argon JS -->
-    <script src="{{ asset('js/argon.min.js') }}"></script>
-
-    <!-- App JS -->
-    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

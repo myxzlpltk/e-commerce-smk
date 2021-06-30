@@ -1,1 +1,1 @@
-<span class="text-danger" data-toggle="tooltip" data-original-title="Wajib diisi">*</span>
+<span class="text-danger" data-toggle="tooltip" title="Wajib diisi">*</span>

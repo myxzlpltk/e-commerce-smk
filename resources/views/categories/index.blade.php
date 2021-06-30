@@ -38,7 +38,7 @@
                         <td>{{ $category->products->count() }} Produk</td>
                         <td>
                             @can('update', $category)
-                            <a href="{{ route('manage.categories.edit', $category) }}" class="table-action" data-toggle="tooltip" data-original-title="Edit">
+                            <a href="{{ route('manage.categories.edit', $category) }}" class="table-action" data-toggle="tooltip" title="Edit">
                                 <i class="fas fa-edit"></i>
                             </a>
                             @endcan
@@ -47,7 +47,7 @@
                             <form class="d-inline" action="{{ route('manage.categories.destroy', $category) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <a href="javascript:void(0)" class="table-action btn-delete" data-toggle="tooltip" data-original-title="Hapus">
+                                <a href="javascript:void(0)" class="table-action btn-delete" data-toggle="tooltip" title="Hapus">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </form>

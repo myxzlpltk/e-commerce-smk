@@ -49,7 +49,7 @@
                                 @foreach($list as $cart)
                                 <tr>
                                     <td>{{ $cart->product->name }}</td>
-                                    <td>{{ UserHelp::idr($cart->product->price) }}</td>
+                                    <td>{{ App\Helpers\Helper::idr($cart->product->price) }}</td>
                                     <td style="width: 10%">
                                         <form action="{{ route('carts.update', $cart) }}" method="post">
                                             @csrf
@@ -70,12 +70,12 @@
                                             @endif
                                         </form>
                                     </td>
-                                    <td>{{ UserHelp::idr($cart->subtotal) }}</td>
+                                    <td>{{ App\Helpers\Helper::idr($cart->subtotal) }}</td>
                                     <td>
                                         <form class="d-inline" action="{{ route('carts.destroy', $cart) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <a href="javascript:void(0)" class="table-action btn-delete" data-toggle="tooltip" data-original-title="Hapus">
+                                            <a href="javascript:void(0)" class="table-action btn-delete" data-toggle="tooltip" title="Hapus">
                                                 <i class="fas fa-trash text-red"></i>
                                             </a>
                                         </form>
@@ -86,7 +86,7 @@
                             <tfoot>
                                 <tr>
                                     <th colspan="3" class="text-right">Total</th>
-                                    <td>{{ UserHelp::idr($list->sum('subtotal')) }}</td>
+                                    <td>{{ App\Helpers\Helper::idr($list->sum('subtotal')) }}</td>
                                     <td>
                                         <a href="{{ route('orders.create', $seller) }}" class="btn btn-primary btn-sm">Bayar</a>
                                     </td>

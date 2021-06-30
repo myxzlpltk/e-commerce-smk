@@ -88,7 +88,7 @@
                 <div class="col-md-4">
                     @if($order->status_code == \App\Models\Order::PAYMENT_PENDING)
                         <div class="alert alert-info">
-                            Segera lakukan sebesar <b class="font-weight-bold">{{ UserHelp::idr($order->total) }}</b> pembayaran ke penjual
+                            Segera lakukan sebesar <b class="font-weight-bold">{{ App\Helpers\Helper::idr($order->total) }}</b> pembayaran ke penjual
                         </div>
                     @elseif($order->status_code == \App\Models\Order::PAYMENT_IN_PROCESS)
                         <div class="alert alert-info">
@@ -125,7 +125,7 @@
                     @foreach($order->details as $detail)
                         <x-order-detail-product :detail="$detail" />
                     @endforeach
-                    <p>Total belanja <span class="font-weight-bold text-orange">{{ UserHelp::idr($order->total) }}</span></p>
+                    <p>Total belanja <span class="font-weight-bold text-orange">{{ App\Helpers\Helper::idr($order->total) }}</span></p>
                 </div>
             </div>
 

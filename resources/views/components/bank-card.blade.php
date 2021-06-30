@@ -2,7 +2,7 @@
     <div class="card-body">
         <div class="row justify-content-between align-items-center">
             <div class="col">
-                <img src="{{ asset('storage/banks/'.$bank->icon) }}" alt="{{ $bank->name }}" class="img-fluid" style="height: 40px;" data-toggle="tooltip" data-original-title="{{ $bank->name }}" />
+                <img src="{{ asset('storage/banks/'.$bank->icon) }}" alt="{{ $bank->name }}" class="img-fluid" style="height: 40px;" data-toggle="tooltip" title="{{ $bank->name }}" />
             </div>
             <div class="col-auto">
                 <span class="badge badge-lg badge-white text-dark">REKENING</span>

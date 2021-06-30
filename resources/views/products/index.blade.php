@@ -48,15 +48,15 @@
                         <td>
                             @if($product->discount > 0)
                                 <small class="d-block">
-                                    <del class="text-danger">{{ UserHelp::idr($product->price) }}</del>
-                                    <span class="text-info" data-toggle="tooltip" data-original-title="Diskon">({{ $product->discount }}%)</span>
+                                    <del class="text-danger">{{ App\Helpers\Helper::idr($product->price) }}</del>
+                                    <span class="text-info" data-toggle="tooltip" title="Diskon">({{ $product->discount }}%)</span>
                                 </small>
                             @endif
-                            {{ UserHelp::idr($product->priceAfterDiscount) }}
+                            {{ App\Helpers\Helper::idr($product->priceAfterDiscount) }}
                         </td>
                         <td>{{ $product->stock }}</td>
                         <td>
-                            <a href="{{ route('manage.products.show', $product) }}" class="table-action" data-toggle="tooltip" data-original-title="Lihat">
+                            <a href="{{ route('manage.products.show', $product) }}" class="table-action" data-toggle="tooltip" title="Lihat">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </td>

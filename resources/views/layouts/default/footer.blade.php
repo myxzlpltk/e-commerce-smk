@@ -1,18 +1,83 @@
-<footer class="py-5 bg-default">
-    <div class="container">
-        <div class="row align-items-center justify-content-xl-between">
-            <div class="col-xl-6">
-                <div class="copyright text-center text-xl-left text-muted">
-                    &copy; 2020 <a href="{{ route('home') }}" class="font-weight-bold ml-1">{{ config('app.name') }}</a>
+<footer>
+    <!-- Footer Start-->
+    <div class="footer-area footer-padding">
+        <div class="container">
+            <div class="row d-flex justify-content-between">
+                <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
+                    <div class="single-footer-caption mb-50">
+                        <div class="single-footer-caption mb-30">
+                            <!-- logo -->
+                            <div class="footer-logo">
+                                <a href="{{ route('home') }}"><img src="{{ asset('img/unit/um-footer.png') }}" alt=""></a>
+                            </div>
+                            <div class="footer-tittle">
+                                <div class="footer-pera">
+                                    <p>Asorem ipsum adipolor sdit amet, consectetur adipisicing elitcf sed do eiusmod tem.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-3 col-md-3 col-sm-5">
+                    <div class="single-footer-caption mb-50">
+                        <div class="footer-tittle">
+                            <h4>Quick Links</h4>
+                            <ul>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Offers & Discounts</a></li>
+                                <li><a href="#">Get Coupon</a></li>
+                                <li><a href="#"> Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-7">
+                    <div class="single-footer-caption mb-50">
+                        <div class="footer-tittle">
+                            <h4>New Products</h4>
+                            <ul>
+                                <li><a href="#">Woman Cloth</a></li>
+                                <li><a href="#">Fashion Accessories</a></li>
+                                <li><a href="#">Man Accessories</a></li>
+                                <li><a href="#">Rubber made Toys</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-5 col-sm-7">
+                    <div class="single-footer-caption mb-50">
+                        <div class="footer-tittle">
+                            <h4>Support</h4>
+                            <ul>
+                                <li><a href="#">Frequently Asked Questions</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Report a Payment Issue</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-xl-6">
-                <ul class="nav nav-footer justify-content-center justify-content-xl-end">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Tentang Kami</a>
-                    </li>
-                </ul>
+            <!-- Footer bottom -->
+            <div class="row align-items-center">
+                <div class="col-xl-7 col-lg-8 col-md-7">
+                    <div class="footer-copy-right">
+                        <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i>by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-lg-4 col-md-5">
+                    <div class="footer-copy-right f-right">
+                        <!-- social -->
+                        <div class="footer-social">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-behance"></i></a>
+                            <a href="#"><i class="fas fa-globe"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <!-- Footer End-->
 </footer>

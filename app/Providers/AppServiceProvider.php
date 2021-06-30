@@ -13,6 +13,7 @@ use App\Observers\SellerObserver;
 use App\Observers\UserObserver;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -46,5 +47,9 @@ class AppServiceProvider extends ServiceProvider
 
         config(['app.locale' => 'id']);
         Carbon::setLocale('id');
+
+        View::composer('layouts.default.app', function ($view){
+            $view->with('sortedSellers', Seller::query()->orderBy('store_name')->get());
+        });
     }
 }

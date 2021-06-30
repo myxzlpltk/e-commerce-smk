@@ -58,7 +58,7 @@
                         </div>
                         <div class="col-md-4 border-left">
                             <h5 class="mb-0">Total Belanja</h5>
-                            <h4 class="mb-0 text-orange"><strong>{{ UserHelp::idr($order->total) }}</strong></h4>
+                            <h4 class="mb-0 text-orange"><strong>{{ App\Helpers\Helper::idr($order->total) }}</strong></h4>
                         </div>
                     </div>
                     <hr class="my-3" />

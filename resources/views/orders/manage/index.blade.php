@@ -41,10 +41,10 @@
                             <span>{{ $order->buyer->user->name }}</span>
                             <small class="d-block text-muted">{{ $order->address }}</small>
                         </td>
-                        <td>{{ UserHelp::idr($order->total) }}</td>
+                        <td>{{ App\Helpers\Helper::idr($order->total) }}</td>
                         <td>{{ $order->status }}</td>
                         <td>
-                            <a href="{{ route('manage.orders.show', $order) }}" class="table-action" data-toggle="tooltip" data-original-title="Lihat">
+                            <a href="{{ route('manage.orders.show', $order) }}" class="table-action" data-toggle="tooltip" title="Lihat">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </td>

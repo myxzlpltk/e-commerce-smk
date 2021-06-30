@@ -29,7 +29,7 @@
                                 @else
                                     <hr/>
                                     <p class="card-title font-weight-bold">Akun Google</p>
-                                    <img src="{{ route('profile.google.avatar') }}" alt="" class="avatar rounded-circle" data-toggle="tooltip" data-original-title="{{ $user->google_email }}">
+                                    <img src="{{ route('profile.google.avatar') }}" alt="" class="avatar rounded-circle" data-toggle="tooltip" title="{{ $user->google_email }}">
                                     <p>{{ $user->google_name }}</p>
                                     <a href="{{ route('profile.google.disconnect') }}" class="btn btn-sm btn-danger btn-block mr-4"><i class="fab fa-google fa-fw"></i> Putuskan</a>
                                 @endempty
@@ -104,9 +104,9 @@
                                             <div class="input-group-append">
                                                 <div class="input-group-text">
                                                     @if($user->hasVerifiedEmail())
-                                                        <i class="fas fa-check-circle fa-fw text-primary" data-toggle="tooltip" data-original-title="Terverifikasi"></i>
+                                                        <i class="fas fa-check-circle fa-fw text-primary" data-toggle="tooltip" title="Terverifikasi"></i>
                                                     @else
-                                                        <i class="fas fa-times-circle fa-fw text-danger" data-toggle="tooltip" data-original-title="Tidak Terverifikasi"></i>
+                                                        <i class="fas fa-times-circle fa-fw text-danger" data-toggle="tooltip" title="Tidak Terverifikasi"></i>
                                                     @endif
                                                 </div>
                                             </div>
@@ -142,7 +142,7 @@
                                     <div class="col-md-12">
                                         @can('isSeller')
                                             <div class="form-group">
-                                                <label class="form-control-label" for="input-logo">Logo Toko <i class="fa fa-info-circle fa-fw" data-toggle="tooltip" data-original-title="Rasio 1:1"></i></label>
+                                                <label class="form-control-label" for="input-logo">Logo Toko <i class="fa fa-info-circle fa-fw" data-toggle="tooltip" title="Rasio 1:1"></i></label>
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input @error('logo') is-invalid @enderror" id="input-logo" name="logo" accept="image/*">
                                                     <label class="custom-file-label" for="input-logo">Pilih file</label>
@@ -152,7 +152,7 @@
                                                 @enderror
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-control-label" for="input-banner">Banner Toko <i class="fa fa-info-circle fa-fw" data-toggle="tooltip" data-original-title="Rasio 3:2"></i></label>
+                                                <label class="form-control-label" for="input-banner">Banner Toko <i class="fa fa-info-circle fa-fw" data-toggle="tooltip" title="Rasio 3:2"></i></label>
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input @error('banner') is-invalid @enderror" id="input-banner" name="banner" accept="image/*">
                                                     <label class="custom-file-label" for="input-banner">Pilih file</label>

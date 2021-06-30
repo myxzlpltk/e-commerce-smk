@@ -1,4 +1,4 @@
-# Warung Semur - UMKM Digital
+# Warung Semur - e-Commerce SMK
 
 Project ini adalah sistem informasi UMKM untuk tugas besar pemrograman web dan basis data 2.
   - [Laravel](https://laravel.com)

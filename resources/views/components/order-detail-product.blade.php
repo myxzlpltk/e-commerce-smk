@@ -4,11 +4,11 @@
     </div>
     <div class="col">
         <h4 class="mb-0">{{ $detail->product->name }}</h4>
-        <small>{{ $detail->qty }} Produk x {{ UserHelp::idr($detail->price_after_discount) }}</small>
+        <small>{{ $detail->qty }} Produk x {{ App\Helpers\Helper::idr($detail->price_after_discount) }}</small>
     </div>
     <div class="col border-left">
         <h5 class="mb-0">Total Harga Produk</h5>
-        <h4 class="mb-0 text-orange"><strong>{{ UserHelp::idr($detail->subtotal) }}</strong></h4>
+        <h4 class="mb-0 text-orange"><strong>{{ App\Helpers\Helper::idr($detail->subtotal) }}</strong></h4>
     </div>
     @if($withAction)
     <div class="col">

@@ -40,7 +40,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" for="input-image">Gambar Produk (opsional) <i class="fa fa-info-circle fa-fw" data-toggle="tooltip" data-original-title="Rasio 1:1"></i></label>
+                    <label class="form-control-label" for="input-image">Gambar Produk (opsional) <i class="fa fa-info-circle fa-fw" data-toggle="tooltip" title="Rasio 1:1"></i></label>
                     <div class="custom-file">
                         <input type="file" class="custom-file-input @error('image') is-invalid @enderror" id="input-image" name="image" accept="image/*">
                         <label class="custom-file-label" for="input-image">Pilih file</label>

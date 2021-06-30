@@ -39,14 +39,14 @@
                         <td>
                             {{ $user->email }}
                             @if($user->hasVerifiedEmail())
-                                <i class="fas fa-check-circle fa-fw text-primary" data-toggle="tooltip" data-original-title="Terverifikasi"></i>
+                                <i class="fas fa-check-circle fa-fw text-primary" data-toggle="tooltip" title="Terverifikasi"></i>
                             @else
-                                <i class="fas fa-times-circle fa-fw text-danger" data-toggle="tooltip" data-original-title="Tidak Terverifikasi"></i>
+                                <i class="fas fa-times-circle fa-fw text-danger" data-toggle="tooltip" title="Tidak Terverifikasi"></i>
                             @endif
                         </td>
                         <td>{{ $user->created_at->format('d/m/Y') }}</td>
                         <td>
-                            <a href="{{ route('manage.users.show', $user) }}" class="table-action" data-toggle="tooltip" data-original-title="Lihat">
+                            <a href="{{ route('manage.users.show', $user) }}" class="table-action" data-toggle="tooltip" title="Lihat">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </td>

@@ -1,3 +1,5 @@
+$('[data-toggle="tooltip"]').tooltip();
+
 $('.custom-file-input').change(function(e){
     if(this.files.length > 0){
         $(this).siblings('.custom-file-label').text(this.files[0].name);

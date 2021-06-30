@@ -125,7 +125,7 @@
             @foreach($order->details as $detail)
                     <x-order-detail-product :detail="$detail" :action="false" />
             @endforeach
-            <p>Total belanja <span class="font-weight-bold text-orange">{{ UserHelp::idr($order->total) }}</span></p>
+            <p>Total belanja <span class="font-weight-bold text-orange">{{ App\Helpers\Helper::idr($order->total) }}</span></p>
         </div>
     </div>
 

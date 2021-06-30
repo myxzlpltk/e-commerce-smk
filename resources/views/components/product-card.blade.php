@@ -7,7 +7,7 @@
             <div class="card-body py-0 pl-0 pl-md-3 pt-2 pt-md-0 pr-0">
                 <h5 class="card-title mb-3 text-truncate">{{ $product->name }}</h5>
                 <p class="card-subtitle mb-1 description"><small class="text-muted">{{ $product->description }}{{ $product->description }}</small></p>
-                <p class="card-text font-weight-bold mb-0">{{ UserHelp::idr($product->priceAfterDiscount) }}</p>
+                <p class="card-text font-weight-bold mb-0">{{ App\Helpers\Helper::idr($product->priceAfterDiscount) }}</p>
 
                 @if($product->stock > 0)
                     <a href="{{ route('carts.add', $product) }}" class="btn btn-primary btn-sm float-right"><i class="fa fa-cart-plus"></i></a>

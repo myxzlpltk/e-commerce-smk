@@ -25,7 +25,7 @@
                 <div class="card-body">
                     <h5 class="h3 card-title mb-0">{{ $product->name }}</h5>
                     <small class="text-muted">{{ $product->description }}</small>
-                    <p class="card-text font-weight-bold mt-4">{{ UserHelp::idr($product->priceAfterDiscount) }}</p>
+                    <p class="card-text font-weight-bold mt-4">{{ App\Helpers\Helper::idr($product->priceAfterDiscount) }}</p>
                     @if($product->discount > 0)
                     <span class="badge badge-default badge-lg bg-gradient-orange">Diskon {{ $product->discount }}% Off</span>
                     @endif
@@ -88,7 +88,7 @@
                         <dt>Deskripsi</dt>
                         <dd>{{ $product->description }}</dd>
                         <dt>Harga</dt>
-                        <dd>{{ UserHelp::idr($product->price) }}</dd>
+                        <dd>{{ App\Helpers\Helper::idr($product->price) }}</dd>
                         @can('isAdmin')
                         <dt>Stok</dt>
                         <dd>{{ $product->stock }} Tersisa</dd>

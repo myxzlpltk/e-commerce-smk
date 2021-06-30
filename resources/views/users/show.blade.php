@@ -33,7 +33,7 @@
                             @else
                                 <hr/>
                                 <p class="card-title font-weight-bold">Akun Google</p>
-                                <img src="{{ $user->google_avatar }}" alt="" class="avatar rounded-circle" data-toggle="tooltip" data-original-title="{{ $user->google_email }}">
+                                <img src="{{ $user->google_avatar }}" alt="" class="avatar rounded-circle" data-toggle="tooltip" title="{{ $user->google_email }}">
                                 <p>{{ $user->google_name }}</p>
                             @endempty
                         </div>
@@ -89,9 +89,9 @@
                             <p>
                                 {{ $user->email }}
                                 @if($user->hasVerifiedEmail())
-                                    <i class="fas fa-check-circle fa-fw text-primary" data-toggle="tooltip" data-original-title="Terverifikasi"></i>
+                                    <i class="fas fa-check-circle fa-fw text-primary" data-toggle="tooltip" title="Terverifikasi"></i>
                                 @else
-                                    <i class="fas fa-times-circle fa-fw text-danger" data-toggle="tooltip" data-original-title="Tidak Terverifikasi"></i>
+                                    <i class="fas fa-times-circle fa-fw text-danger" data-toggle="tooltip" title="Tidak Terverifikasi"></i>
                                 @endif
                             </p>
                         </div>
