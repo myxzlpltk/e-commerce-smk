@@ -1,27 +1,23 @@
-<div class="card p-3 mb-0">
-    <div class="row no-gutters">
-        <div class="col-md-4">
-            <img src="{{ asset('storage/products/'.$product->image) }}" alt="" class="card-img">
-        </div>
-        <div class="col-md-8">
-            <div class="card-body py-0 pl-0 pl-md-3 pt-2 pt-md-0 pr-0">
-                <h5 class="card-title mb-3 text-truncate">{{ $product->name }}</h5>
-                <p class="card-subtitle mb-1 description"><small class="text-muted">{{ $product->description }}{{ $product->description }}</small></p>
-                <p class="card-text font-weight-bold mb-0">{{ App\Helpers\Helper::idr($product->priceAfterDiscount) }}</p>
-
+<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+    <div class="single-popular-items mb-50 text-center">
+        <div class="popular-img">
+            <img src="{{ asset("storage/products/{$product->image}") }}" alt="{{ $product->name }}">
+            <div class="img-cap">
                 @if($product->stock > 0)
-                    <a href="{{ route('carts.add', $product) }}" class="btn btn-primary btn-sm float-right"><i class="fa fa-cart-plus"></i></a>
+                <a href="{{ route('carts.add', $product) }}"><span><i class="fa fa-cart-plus fa-fw"></i> Tambah ke Keranjang</span></a>
                 @else
-                    <span class="text-red float-right"><small>Stok Habis</small></span>
+                <span>Stok Habis</span>
                 @endif
-
-                @if($product->discount > 0)
-                    <span class="badge badge-default bg-gradient-orange">{{ $product->discount }}% Off</span>
-                @else
-                    <span class="badge badge-default bg-white text-white">0% Off</span>
-                @endif
-
             </div>
+        </div>
+        <div class="popular-caption">
+            <h3><a href="{{ route('sellers.show', $product->seller_id) }}#products-{{ $product->id }}">{{ $product->name }}</a></h3>
+            <span>
+                @if($product->discount > 0)
+                    <del class="text-danger small">{{ App\Helpers\Helper::idr($product->price) }}</del>
+                @endif
+                {{ App\Helpers\Helper::idr($product->price_after_discount) }}
+            </span>
         </div>
     </div>
 </div>

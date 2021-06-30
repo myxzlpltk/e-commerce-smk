@@ -1,14 +1,10 @@
 @extends('layouts.default.app')
 
 @section('title', 'Selamat Datang')
-@section('body.className', 'bg-gradient-primary')
 
 @push('stylesheets')
     <link rel="stylesheet" href="{{ asset('vendor/select2/dist/css/select2.min.css') }}">
 @endpush
-
-@section('header')
-@endsection
 
 @section('content')
     <div class="container py-7 py-lg-8 pt-lg-9">

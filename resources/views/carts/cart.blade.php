@@ -1,20 +1,10 @@
 @extends('layouts.default.app')
 
 @section('title', 'Keranjang')
-@section('body.className', 'bg-white')
 
 @push('stylesheets')
     <link rel="stylesheet" href="{{ asset('vendor/animate.css/animate.min.css') }}">
 @endpush
-
-@section('header')
-    <div class="header bg-gradient-indigo py-5">
-        <div class="container">
-            <div class="header-body text-center">
-            </div>
-        </div>
-    </div>
-@endsection
 
 @section('content')
     <div class="container-fluid bg-gradient-indigo">

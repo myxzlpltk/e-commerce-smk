@@ -1,27 +1,6 @@
 @extends('layouts.default.app')
 
 @section('title', 'Masuk')
-@section('body.className', 'bg-default')
-
-@section('header')
-    <div class="header bg-gradient-blue py-7 py-lg-8 pt-lg-9">
-        <div class="container">
-            <div class="header-body text-center mb-7">
-                <h1 class="text-white">Menunggu Verifikasi Email</h1>
-                <p class="text-lead text-white">
-                    Sebelum bisa melanjutkan akses, kamu harus memverifikasi email.<br>
-                    Kami sudah mengirimkan pesan ke {{ auth()->user()->email }}.<br>
-                    Silahkan cek di kotak masuk atau spam.
-                </p>
-            </div>
-        </div>
-        <div class="separator separator-bottom separator-skew zindex-100">
-            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-            </svg>
-        </div>
-    </div>
-@endsection
 
 @section('content')
     <div class="container mt--8 pb-5">

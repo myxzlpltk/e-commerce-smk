@@ -13,9 +13,6 @@
 @section('card-stats')
 @endsection
 
-@section('header')
-@endsection
-
 @section('content')
 @endsection
 

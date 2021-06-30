@@ -14,9 +14,6 @@
 @section('card-stats')
 @endsection
 
-@section('header')
-@endsection
-
 @section('content')
     <form action="{{ route('manage.open-hours.update') }}" method="post">
         @csrf

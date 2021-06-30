@@ -11,9 +11,6 @@
 @section('card-stats')
 @endsection
 
-@section('header')
-@endsection
-
 @section('content')
     <div class="card">
         <div class="card-header">

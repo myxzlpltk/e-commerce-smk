@@ -1,19 +1,9 @@
 @extends('layouts.default.app')
 
 @section('title', 'Informasi Pemesanan')
-@section('body.className', 'bg-default')
 
 @push('stylesheets')
 @endpush
-
-@section('header')
-    <div class="header bg-gradient-info py-5">
-        <div class="container">
-            <div class="header-body text-center">
-            </div>
-        </div>
-    </div>
-@endsection
 
 @section('content')
     <div class="container-fluid bg-gradient-info">

@@ -22,7 +22,7 @@ class SellerController extends Controller{
     /**
      * Display my store
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function myStore(Request $request){
         $seller = $request->user()->seller;
@@ -37,8 +37,7 @@ class SellerController extends Controller{
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(){
         //
     }
 
@@ -48,8 +47,7 @@ class SellerController extends Controller{
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         //
     }
 
@@ -57,33 +55,12 @@ class SellerController extends Controller{
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show(Seller $seller){
-        $now = Carbon::now();
-        $today = $seller->days()->where('index', $now->dayOfWeek)->first();
+        $seller->load('categories.products');
 
-        $i = 1;
-        if(!is_null($today) && Carbon::parse($today->pivot->start)->gte($now)){
-            $tomorrow = $today;
-        }
-        else {
-            do {
-                $tomorrow = $seller->days->where('index', ($now->dayOfWeek + $i) % 7)->first();
-                $i++;
-            } while ($tomorrow == null);
-        }
-
-        $isOpen = $today
-            && Carbon::parse($today->pivot->start)->lte($now)
-            && Carbon::parse($today->pivot->end)->gte($now);
-
-        return view('sellers.show', [
-            'seller' => $seller,
-            'isOpen' => $isOpen,
-            'today' => $today,
-            'tomorrow' => $tomorrow,
-        ]);
+        return view('sellers.show', ['seller' => $seller]);
     }
 
     /**
@@ -92,8 +69,7 @@ class SellerController extends Controller{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
         //
     }
 
@@ -104,8 +80,7 @@ class SellerController extends Controller{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         //
     }
 
@@ -115,8 +90,7 @@ class SellerController extends Controller{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         //
     }
 }

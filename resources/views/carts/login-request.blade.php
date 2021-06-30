@@ -1,7 +1,6 @@
 @extends('layouts.default.app')
 
 @section('title', 'Waduuhhh... Kamu harus login terlebih dahulu')
-@section('body.className', 'bg-white')
 
 @push('stylesheets')
     <div class="header bg-gradient-indigo py-7 py-lg-8 pt-lg-9">
@@ -20,9 +19,6 @@
         </div>
     </div>
 @endpush
-
-@section('header')
-@endsection
 
 @section('content')
 @endsection

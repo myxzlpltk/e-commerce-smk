@@ -1,92 +1,59 @@
 @extends('layouts.default.app')
 
 @section('title', $seller->store_name)
-@section('body.className', 'bg-white')
 
 @push('stylesheets')
-    <style>
-        .description{
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            line-height: 12px;
-            font-size: 12px;
-        }
-        .header{
-            background-image: url("{{ asset('storage/banners/'.$seller->banner) }}");
-            background-size: cover;
-            background-position: center top;
-            background-repeat: no-repeat;
-        }
-    </style>
 @endpush
 
-@section('header')
-    <div class="header">
-        <div class="header-body">
-            <div class="container pt-7">
+@section('content')
+    <!-- Hero Area Start-->
+    <div class="slider-area ">
+        <div class="single-slider slider-height2 d-flex align-items-center">
+            <div class="container">
                 <div class="row">
-                    <div class="col-12 col-sm-4 col-md-3">
-                        <div class="card">
-                            <img src="{{ asset('storage/logos/'.$seller->logo) }}" class="card-img">
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-8 col-md-9">
-                        <div class="card card-body bg-gradient-white">
-                            <div class="row">
-                                <div class="col-12 col-md-8 mb-3 mb-md-0">
-                                    <h1 class="h2">{{ $seller->store_name }}</h1>
-
-                                    @if($isOpen)
-                                        <span class="badge badge-success badge-lg mr-3">BUKA</span>
-                                        <span>Tutup jam {{ \Carbon\Carbon::parse($tomorrow->pivot->end)->format('H:i') }}</span>
-                                    @else
-                                        <span class="badge badge-danger badge-lg mr-3">TUTUP</span>
-                                        <span>Buka lagi jam {{ \Carbon\Carbon::parse($tomorrow->pivot->start)->format('H:i') }} @if($tomorrow == $today) hari ini @else hari {{ strtolower($tomorrow->name) }} @endif</span>
-                                    @endif
-
-                                    <div class="mt-3">
-                                        @foreach($seller->days as $day)
-                                            <p class="mb-0 d-flex justify-content-between">
-                                                <span class="font-weight-bold">{{ $day->name }}</span>
-                                                <span>{{ \Carbon\Carbon::parse($tomorrow->pivot->start)->format('H:i') }}-{{\Carbon\Carbon::parse($tomorrow->pivot->end)->format('H:i')}}</span>
-                                            </p>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4 mb-3 mb-md-0">
-                                    <h4>Alamat</h4>
-                                    <p>{{ $seller->address }}</p>
-                                    <a href="{{ url('https://www.google.com/maps/search/?api=1&query='.urlencode($seller->address)) }}" target="_blank" class="card-link"><i class="fa fa-map-marked fa-fw"></i> Lihat Peta</a>
-                                </div>
-                            </div>
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Unit Usaha</h2>
+                            <h2>{{ $seller->store_name }}</h2>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-@endsection
+    <!-- Hero Area End-->
 
-@section('content')
-    <div class="container bg-white py-5">
-        @foreach($seller->categories as $category)
-        <div id="{{ Str::slug($category->name) }}">
-            <h3>{{ $category->name }}</h3>
-
-            <div class="row">
-                @foreach($category->products as $product)
-                    <div class="col-12 col-sm-6 col-md-4 p-2">
+    <section class="popular-items latest-padding">
+        <div class="container">
+            <div class="row product-btn justify-content-between mb-40">
+                <div class="properties__button">
+                    <!--Nav Button  -->
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            @foreach($seller->categories as $category)
+                            <a class="nav-item nav-link @if($loop->first) active @endif" id="nav-{{ Str::slug($category->name) }}-tab" data-toggle="tab" href="#nav-{{ Str::slug($category->name) }}">{{ $category->name }}</a>
+                            @endforeach
+                        </div>
+                    </nav>
+                    <!--End Nav Button  -->
+                </div>
+            </div>
+            <!-- Nav Card -->
+            <div class="tab-content" id="nav-tabContent">
+                @foreach($seller->categories as $category)
+                <div class="tab-pane fade @if($loop->first) show active @endif" id="nav-{{ Str::slug($category->name) }}">
+                    <div class="row">
+                        @foreach($category->products as $product)
                         <x-product-card :product="$product" />
+                        @endforeach
                     </div>
+                </div>
                 @endforeach
             </div>
         </div>
-        @endforeach
-    </div>
+    </section>
+
+    @include('partials.shop-method')
 @endsection
 
 @push('scripts')

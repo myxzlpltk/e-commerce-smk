@@ -25,7 +25,7 @@ class ProductFactory extends Factory
         $this->faker->addProvider(new NewAgeProvider($this->faker));
 
         return [
-            'name' => $this->faker->sentence,
+            'name' => implode(" ", $this->faker->words(3)),
             'description' => $this->faker->sentence(4),
             'price' => $this->faker->numberBetween(50, 300)*100,
             'discount' => $this->faker->optional(0.25,0)->randomDigitNotNull,

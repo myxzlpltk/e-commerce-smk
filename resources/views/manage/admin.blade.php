@@ -84,9 +84,6 @@
     </div>
 @endsection
 
-@section('header')
-@endsection
-
 @section('content')
     <div class="row">
         <div class="col-xl-8">

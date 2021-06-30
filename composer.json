@@ -23,6 +23,7 @@
         "laravel/tinker": "^2.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.6",
         "facade/ignition": "^2.3.6",
         "frequenc1/newage-ipsum": "dev-master",
         "fzaninotto/faker": "^1.9.1",

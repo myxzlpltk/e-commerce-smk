@@ -1,7 +1,6 @@
 @extends('layouts.default.app')
 
 @section('title', 'Pencarian Produk')
-@section('body.className', 'bg-default')
 
 @push('stylesheets')
     <style>
@@ -16,15 +15,6 @@
         }
     </style>
 @endpush
-
-@section('header')
-    <div class="header bg-gradient-indigo py-5">
-        <div class="container">
-            <div class="header-body text-center">
-            </div>
-        </div>
-    </div>
-@endsection
 
 @section('content')
     <div class="container-fluid bg-gradient-indigo">

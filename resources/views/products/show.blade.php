@@ -13,9 +13,6 @@
 @section('card-stats')
 @endsection
 
-@section('header')
-@endsection
-
 @section('content')
     <div class="row">
         <div class="col-md-4 col-lg-3">
