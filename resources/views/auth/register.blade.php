@@ -24,24 +24,7 @@
                         <div class="login_part_form_iner">
                             <h3>Selamat Datang! <br> Silahkan Mendaftar</h3>
 
-                            @if (session('status'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <span class="alert-icon"><i class="ni ni-like-2"></i></span>
-                                    <span class="alert-text">{{ session('status') }}</span>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            @endif
-                            @if (session('error'))
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <span class="alert-icon"><i class="fa fa-times-circle"></i></span>
-                                    <span class="alert-text">{{ session('error') }}</span>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            @endif
+                            @include('layouts.flash')
 
                             <form class="row contact_form" action="{{ route('register') }}" method="post" novalidate="novalidate">
                                 @csrf
