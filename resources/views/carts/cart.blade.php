@@ -97,8 +97,8 @@
             @if(!$loop->last) <hr class="mx-3 my-5"/> @endif
             @empty
             <div class="text-center py-5">
-                <i class="fa fa-shopping-cart fa-4x animated rubberBand text-white mb-3"></i>
-                <h3 class="text-white mb-4">Keranjang kamu masih kosong...</h3>
+                <i class="fa fa-shopping-cart fa-4x animated rubberBand mb-3"></i>
+                <h3 class="mb-4">Keranjang kamu masih kosong...</h3>
                 <a href="{{ route('search') }}" class="btn btn-white">Saya ingin belanja barang</a>
             </div>
             @endforelse

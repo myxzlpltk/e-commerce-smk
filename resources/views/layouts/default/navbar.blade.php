@@ -60,6 +60,7 @@
 
                             @auth
                             <li data-toggle="tooltip" title="Profil"><a href="{{ route('profile') }}"><span class="fa fa-user"></span></a></li>
+                            <li data-toggle="tooltip" title="Keluar"><a href="{{ route('logout') }}"><span class="fa fa-sign-out-alt"></span></a></li>
                             @else
                             <li data-toggle="tooltip" title="Masuk"><a href="{{ route('login') }}"><span class="fa fa-sign-in-alt"></span></a></li>
                             @endif

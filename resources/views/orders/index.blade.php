@@ -16,16 +16,16 @@
                 <div class="card-body">
                     <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <a class="nav-link @if(Request::segment(2) == '') active @endif" href="{{ route('orders.index') }}">Menunggu Pembayaran</a>
+                            <a class="nav-link @if(Request::segment(2) == '') active @else text-dark @endif" href="{{ route('orders.index') }}">Menunggu Pembayaran</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @if(Request::segment(2) == 'process') active @endif" href="{{ route('orders.index', "process") }}">Sedang Proses</a>
+                            <a class="nav-link @if(Request::segment(2) == 'process') active @else text-dark @endif" href="{{ route('orders.index', "process") }}">Sedang Proses</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @if(Request::segment(2) == 'complete') active @endif" href="{{ route('orders.index', "complete") }}">Selesai</a>
+                            <a class="nav-link @if(Request::segment(2) == 'complete') active @else text-dark @endif" href="{{ route('orders.index', "complete") }}">Selesai</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @if(Request::segment(2) == 'cancel') active @endif" href="{{ route('orders.index', "cancel") }}">Pembatalan</a>
+                            <a class="nav-link @if(Request::segment(2) == 'cancel') active @else text-dark @endif" href="{{ route('orders.index', "cancel") }}">Pembatalan</a>
                         </li>
                     </ul>
                 </div>

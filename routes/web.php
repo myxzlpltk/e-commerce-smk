@@ -21,6 +21,7 @@ Route::get('login/google', [LoginController::class, 'redirectToProvider'])->name
 Route::get('login/google/callback', [LoginController::class, 'handleProviderCallback'])->name('login.google.callback');
 Route::get('register/google', [RegisterController::class, 'redirectToProvider'])->name('register.google');
 Route::get('register/google/callback', [RegisterController::class, 'handleProviderCallback'])->name('register.google.callback');
+Route::get('logout', [\Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 Route::middleware('can:isBuyerOrGuest')->group(function (){
     Route::get('search', [ProductController::class, 'search'])->name('search');
