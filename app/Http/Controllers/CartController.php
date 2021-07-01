@@ -70,10 +70,13 @@ class CartController extends Controller{
         Gate::authorize('update', $cart);
 
         $request->validate([
-            'qty' => 'required|integer|min:1'
+            'qty' => 'required|integer|min:0'
         ]);
 
-        if($request->qty > $cart->product->stock){
+        if($request->qty == 0){
+            return $this->destroy($request, $cart);
+        }
+        elseif($request->qty > $cart->product->stock){
             $cart->qty = $cart->product->stock;
             $cart->save();
 
