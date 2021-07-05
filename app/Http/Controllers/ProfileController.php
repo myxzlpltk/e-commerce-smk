@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Fortify\PasswordValidationRules;
-use App\Models\Bank;
 use App\Models\Buyer;
 use App\Models\Seller;
 use App\Models\User;
@@ -22,7 +21,6 @@ class ProfileController extends Controller{
     public function profile(Request $request){
         return view('profile.view', [
             'user' => $request->user(),
-            'banks' => Bank::all(),
         ]);
     }
 
@@ -123,9 +121,6 @@ class ProfileController extends Controller{
             'store_name' => 'required|string',
             'address' => 'required|string',
             'phone_number' => 'required|numeric|starts_with:8',
-            'bank_id' => 'required|exists:App\Models\Bank,id',
-            'account_number' => 'required|numeric',
-            'account_name' => 'required|string',
         ]);
 
         $seller = Seller::where('user_id', $request->user()->id)->first();
@@ -137,9 +132,6 @@ class ProfileController extends Controller{
         $seller->store_name = $request->store_name;
         $seller->address = $request->address;
         $seller->phone_number = $request->phone_number;
-        $seller->bank_id = $request->bank_id;
-        $seller->account_number = $request->account_number;
-        $seller->account_name = $request->account_name;
 
         if($request->file('logo')){
             $image = Image::make($request->file('logo'));
@@ -172,9 +164,6 @@ class ProfileController extends Controller{
         $request->validate([
             'address' => 'required|string',
             'phone_number' => 'required|numeric|starts_with:8',
-            'bank_id' => 'required|exists:App\Models\Bank,id',
-            'account_number' => 'required|numeric',
-            'account_name' => 'required|string',
         ]);
 
         $buyer = Buyer::where('user_id', $request->user()->id)->first();
@@ -185,9 +174,6 @@ class ProfileController extends Controller{
 
         $buyer->address = $request->address;
         $buyer->phone_number = $request->phone_number;
-        $buyer->bank_id = $request->bank_id;
-        $buyer->account_number = $request->account_number;
-        $buyer->account_name = $request->account_name;
         $buyer->save();
 
         return redirect()->route('profile')->with([

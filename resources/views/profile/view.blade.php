@@ -13,7 +13,7 @@
             <div class="col-md-4 col-lg-3">
                 <div class="card">
                     <div class="card-body">
-                        <img src="{{ asset('storage/avatars/'.$user->avatar) }}" class="rounded-circle img-center img-fluid shadow shadow-lg--hover" style="width: 140px;">
+                        <img src="{{ asset('storage/avatars/'.$user->avatar) }}" class="rounded-circle img-fluid shadow mx-auto d-block" style="width: 140px;">
                         <div class="pt-4 text-center">
                             <h5 class="h3 title">
                                 <span class="d-block mb-1">{{ $user->name }}</span>
@@ -70,13 +70,6 @@
             </div>
             <div class="col-md-6 col-lg-9">
                 <div class="card">
-                    <div class="card-header">
-                        <div class="row align-items-center">
-                            <div class="col-8">
-                                <h3 class="mb-0">Edit profil </h3>
-                            </div>
-                        </div>
-                    </div>
                     <div class="card-body">
                         <form action="{{ route('user-profile-information.update') }}" method="post" enctype="multipart/form-data">
                             @method('put')
@@ -184,38 +177,6 @@
                                             <div class="invalid-feedback d-block">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <label class="form-control-label" for="input-bank-id">Nama Bank <x-required/></label>
-                                            <select class="form-control @error('bank_id') is-invalid @enderror" name="bank_id" data-toggle="select" required>
-                                                <option disabled hidden selected>--Pilih Bank--</option>
-                                                @foreach($banks as $bank)
-                                                    <option value="{{ $bank->id }}" @if(old('bank_id', optional($user->userable)->bank_id) == $bank->id) selected @endif>{{ $bank->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('bank_id')
-                                            <div class="invalid-feedback d-block">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <label class="form-control-label" for="input-account-number">Nomor Rekening <x-required/></label>
-                                            <input type="text" id="input-account-number" name="account_number" class="form-control @error('account_number') is-invalid @enderror" placeholder="Masukkan nomor rekening" value="{{ old('account_number', optional($user->userable)->account_number) }}" required>
-                                        </div>
-                                        @error('account_number')
-                                        <div class="invalid-feedback d-block">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <label class="form-control-label" for="input-account-name">Atas Nama <x-required/></label>
-                                            <input type="text" id="input-account-name" name="account_name" class="form-control @error('account_name') is-invalid @enderror" placeholder="Masukkan atas nama rekening" value="{{ old('account_name', optional($user->userable)->account_name) }}" required>
-                                        </div>
-                                        @error('account_name')
-                                        <div class="invalid-feedback d-block">{{ $message }}</div>
-                                        @enderror
                                     </div>
                                 </div>
                                 <button class="btn btn-primary"><i class="fa fa-save fa-fw"></i> Simpan</button>
