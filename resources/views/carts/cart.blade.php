@@ -14,7 +14,7 @@
 
     <section class="cart_area">
         <div class="container">
-            <h1 class="text-center text-white">Keranjang Saya</h1>
+            <h1 class="text-center">Keranjang Saya</h1>
 
             @forelse($carts as $list)
             @php $seller = $list->first()->product->seller @endphp

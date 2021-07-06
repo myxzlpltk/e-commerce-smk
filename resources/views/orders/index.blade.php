@@ -10,7 +10,7 @@
         <div class="container py-5">
             @include('layouts.flash')
 
-            <h1 class="text-center text-white mb-4">Pesanan Saya</h1>
+            <h1 class="text-center mb-4">Pesanan Saya</h1>
 
             <div class="card">
                 <div class="card-body">
