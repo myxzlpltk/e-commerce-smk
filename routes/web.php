@@ -72,8 +72,6 @@ Route::middleware('auth')->group(function (){
         Route::resource('categories', Manage\CategoryController::class, ['as' => 'manage']);
 
         Route::patch('products/{product}/update-stock', [Manage\ProductController::class, 'updateStock'])->name('manage.products.update-stock');
-        Route::get('open-hours', [Manage\DayController::class, 'index'])->name('manage.open-hours.index');
-        Route::patch('open-hours', [Manage\DayController::class, 'update'])->name('manage.open-hours.update');
     });
 
     Route::middleware('can:isBuyerRegistered')->group(function (){

@@ -66,15 +66,6 @@
     </li>
     @endcan
 
-    @can('isSeller')
-    <li class="nav-item @if(Request::segment(2) == 'open-hours') active @endif">
-        <a class="nav-link" href="{{ route('manage.open-hours.index') }}">
-            <i class="fa fa-clock fa-fw"></i>
-            <span>Jam Buka</span>
-        </a>
-    </li>
-    @endcan
-
 	<hr class="sidebar-divider d-none d-md-block">
 
 	<div class="text-center d-none d-md-inline">

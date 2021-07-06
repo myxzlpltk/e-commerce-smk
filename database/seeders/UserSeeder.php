@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
-use App\Models\Day;
-use App\Models\OpenHour;
 use App\Models\Product;
 use App\Models\Seller;
 use App\Models\User;
@@ -40,13 +38,6 @@ class UserSeeder extends Seeder
                         Product::factory(['category_id' => $category->id])->make()
                     );
                 }
-            }
-
-            for($i=1; $i<7; $i++){
-                $user->seller->days()->attach($i, [
-                    'start' => '08:00',
-                    'end' => '20:00',
-                ]);
             }
         });
     }

@@ -74,12 +74,6 @@ Breadcrumbs::for('manage.categories.edit', function ($trail, $category){
     $trail->push('Edit Kategori', route('manage.categories.edit', $category));
 });
 
-// Jam Buka
-Breadcrumbs::for('manage.open-hours.index', function ($trail){
-    $trail->parent('home');
-    $trail->push('Jam Buka', route('manage.open-hours.index'));
-});
-
 // Transaksi
 Breadcrumbs::for('manage.orders.index', function ($trail){
     $trail->parent('home');

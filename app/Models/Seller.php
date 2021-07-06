@@ -17,13 +17,6 @@ class Seller extends Model{
         return $this->morphOne('App\Models\User',__FUNCTION__, 'role', 'id', 'user_id');
     }
 
-    public function days(){
-        return $this->belongsToMany('App\Models\Day')
-            ->using('App\Models\DaySeller')
-            ->withPivot(['start', 'end'])
-            ->withTimestamps();
-    }
-
     public function products(){
         return $this->hasMany('App\Models\Product');
     }
