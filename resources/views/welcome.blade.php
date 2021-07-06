@@ -19,13 +19,13 @@
                                 <p data-animation="fadeInLeft" data-delay=".7s" data-duration="2000ms">Temukan barang-barang berkualitas dengan harga terbaik dan berbagai penawaran menarik hanya di website ini.</p>
                                 <!-- Hero-btn -->
                                 <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s" data-duration="2000ms">
-                                    <a href="industries.html" class="btn hero-btn">Shop Now</a>
+                                    <a href="{{ route('search') }}" class="btn hero-btn">Shop Now</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 d-none d-sm-block">
                             <div class="hero__img" data-animation="bounceIn" data-delay=".4s">
-                                <img src="img/unit/toko.png" alt="" class=" heartbeat">
+                                <img src="{{ asset('img/unit/toko.png') }}" alt="" class=" heartbeat">
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                                 <p data-animation="fadeInLeft" data-delay=".7s" data-duration="2000ms">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat is aute irure.</p>
                                 <!-- Hero-btn -->
                                 <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s" data-duration="2000ms">
-                                    <a href="industries.html" class="btn hero-btn">Shop Now</a>
+                                    <a href="{{ route('search') }}" class="btn hero-btn">Shop Now</a>
                                 </div>
                             </div>
                         </div>
