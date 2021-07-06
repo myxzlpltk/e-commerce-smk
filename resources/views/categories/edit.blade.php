@@ -12,8 +12,8 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header d-flex justify-content-between">
-            <h5 class="h3 mb-0">Formulir</h5>
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+            <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-clipboard-list fa-fw"></i> Formulir</h6>
         </div>
         <div class="card-body">
             <form action="{{ route('manage.categories.update', $category) }}" method="post">

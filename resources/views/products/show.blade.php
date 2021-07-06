@@ -8,6 +8,16 @@
 @endpush
 
 @section('actions')
+    @can('update', $product)
+        <a href="{{ route('manage.products.edit', $product) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit fa-fw"></i> Edit</a>
+    @endcan
+    @can('delete', $product)
+        <form class="d-inline" action="{{ route('manage.products.destroy', $product) }}" method="post">
+            @csrf
+            @method('DELETE')
+            <a href="javascript:void(0)" class="btn btn-danger btn-sm btn-delete"><i class="fa fa-trash fa-fw"></i> Hapus</a>
+        </form>
+    @endcan
 @endsection
 
 @section('content')
@@ -56,20 +66,8 @@
         </div>
         <div class="col-md-8 col-lg-9">
             <div class="card mb-3">
-                <div class="card-header py-3 d-flex justify-content-between">
+                <div class="card-header py-3 d-flex justify-content-between align-items-center">
                     <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-info-circle fa-fw"></i> Informasi Produk</h6>
-                    <div>
-                        @can('update', $product)
-                        <a href="{{ route('manage.products.edit', $product) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit fa-fw"></i> Edit</a>
-                        @endcan
-                        @can('delete', $product)
-                        <form class="d-inline" action="{{ route('manage.products.destroy', $product) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <a href="javascript:void(0)" class="btn btn-danger btn-sm btn-delete"><i class="fa fa-trash fa-fw"></i> Hapus</a>
-                        </form>
-                        @endcan
-                    </div>
                 </div>
                 <div class="card-body">
                     <dl>
@@ -95,4 +93,14 @@
 @endsection
 
 @push('scripts')
+    <script>
+        $(document).ready(function(){
+            $('.input-stock .input-group-prepend button').click(function(){
+                $('.input-stock input').val(Math.max(0, parseInt($('.input-stock input').val()) - 1));
+            })
+            $('.input-stock .input-group-append button').click(function(){
+                $('.input-stock input').val(parseInt($('.input-stock input').val()) + 1);
+            })
+        })
+    </script>
 @endpush

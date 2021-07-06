@@ -35,21 +35,19 @@
                 </div>
             </div>
 
-            @if($user->isSeller)
-                @if($user->seller)
-                    <div class="card mb-3 card-profile">
-                        <img src="{{ asset('storage/banners/'.$user->seller->banner) }}" alt="Banner Toko" class="card-img-top">
+            @if($user->isSeller && $user->seller)
+                <div class="card mb-3 card-profile">
+                    <img src="{{ asset('storage/banners/'.$user->seller->banner) }}" alt="Banner Toko" class="card-img-top">
 
-                        <div class="card-body">
-                            <div class="d-flex justify-content-end align-items-center">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-end align-items-center">
 
-                                <div class="text-center ml-2">
-                                    <h5>{{ $user->seller->store_name }}</h5>
-                                </div>
+                            <div class="text-center ml-2">
+                                <h5>{{ $user->seller->store_name }}</h5>
                             </div>
                         </div>
                     </div>
-                @endif
+                </div>
             @endif
         </div>
         <div class="col-md-6 col-lg-9">

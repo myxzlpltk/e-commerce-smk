@@ -21,7 +21,7 @@
                             </h5>
                             <div class="mt-3">
                                 @empty($user->google_email)
-                                    <a href="{{ route('profile.google') }}" class="btn btn-sm btn-danger btn-block mr-4"><i class="fab fa-google fa-fw"></i> Hubungkan</a>
+                                    <a href="{{ route('profile.google') }}" class="btn btn-sm btn-danger btn_3 btn-block mr-4"><i class="fab fa-google fa-fw"></i> Hubungkan</a>
                                 @else
                                     <hr/>
                                     <p class="card-title font-weight-bold">Akun Google</p>
@@ -38,28 +38,17 @@
                     @if($user->seller)
                         <div class="card card-profile mb-3">
                             <img src="{{ asset('storage/banners/'.$user->seller->banner) }}" alt="Banner Toko" class="card-img-top">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-3 order-lg-2">
-                                    <div class="card-profile-image">
-                                        <a href="#">
-                                            <img src="{{ asset('storage/logos/'.$user->seller->logo) }}" class="rounded-circle">
-                                        </a>
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <img src="{{ asset('storage/logos/'.$user->seller->logo) }}" class="img-fluid rounded-circle mx-2" style="max-height: 48px; max-width: 48px;">
+                                    <div class="text-center">
+                                        <h5>{{ $user->seller->store_name }}</h5>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                                <div class="d-flex justify-content-end">
-                                    <span class="btn btn-sm btn-default float-right">Toko</span>
-                                </div>
-                            </div>
-                            <div class="card-body pt-0">
-                                <div class="text-center">
-                                    <h5 class="h3">{{ $user->seller->store_name }}</h5>
                                 </div>
                             </div>
                         </div>
                     @else
-                        <div class="card bg-gradient-orange">
+                        <div class="card mb-3 bg-gradient-warning">
                             <div class="card-body text-white">
                                 <h3 class="card-title"><i class="fas fa-exclamation-triangle fa-fw"></i> Waduh....</h3>
                                 <p class="card-subtitle">Kamu belum memiliki toko. Silahkan membuat mengisi formulir informasi penjual!</p>
@@ -116,7 +105,7 @@
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-fw"></i> Simpan</button>
+                            <button type="submit" class="btn btn-primary btn_1"><i class="fa fa-save fa-fw"></i> Simpan</button>
                         </form>
                         @can('isBuyerOrSeller')
                             <form action="@can('isBuyer') {{ route('profile.buyer') }} @elsecan('isSeller') {{ route('profile.seller') }} @endcan" method="POST" enctype="multipart/form-data">
@@ -179,7 +168,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button class="btn btn-primary"><i class="fa fa-save fa-fw"></i> Simpan</button>
+                                <button type="submit" class="btn btn-primary btn_1"><i class="fa fa-save fa-fw"></i> Simpan</button>
                             </form>
                         @endcan
                     </div>
@@ -215,7 +204,7 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-fw"></i> Perbarui</button>
+                            <button type="submit" class="btn btn-primary btn_1"><i class="fa fa-save fa-fw"></i> Perbarui</button>
                         </form>
                     </div>
                 </div>
