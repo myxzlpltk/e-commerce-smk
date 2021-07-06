@@ -45,7 +45,11 @@
                             @endif
 
                             @can('isSeller')
-                            <li data-toggle="tooltip" title="Kelola Toko Saya"><a href="{{ route('manage') }}"><span class="fas fa-store"></span></a></li>
+                                <li data-toggle="tooltip" title="Kelola Toko Saya"><a href="{{ route('manage') }}"><span class="fas fa-store"></span></a></li>
+                            @endcan
+
+                            @can('isAdmin')
+                                <li data-toggle="tooltip" title="Dasbor"><a href="{{ route('manage') }}"><span class="fas fa-tachometer-alt"></span></a></li>
                             @endcan
 
                             @can('isBuyerRegistered')

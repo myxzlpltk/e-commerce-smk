@@ -11,7 +11,7 @@
         @include('layouts.flash')
         <div class="row">
             <div class="col-md-4 col-lg-3">
-                <div class="card">
+                <div class="card mb-3">
                     <div class="card-body">
                         <img src="{{ asset('storage/avatars/'.$user->avatar) }}" class="rounded-circle img-fluid shadow mx-auto d-block" style="width: 140px;">
                         <div class="pt-4 text-center">
@@ -36,7 +36,7 @@
 
                 @can('isSeller')
                     @if($user->seller)
-                        <div class="card card-profile">
+                        <div class="card card-profile mb-3">
                             <img src="{{ asset('storage/banners/'.$user->seller->banner) }}" alt="Banner Toko" class="card-img-top">
                             <div class="row justify-content-center">
                                 <div class="col-lg-3 order-lg-2">
@@ -69,7 +69,7 @@
                 @endcan
             </div>
             <div class="col-md-6 col-lg-9">
-                <div class="card">
+                <div class="card mb-3">
                     <div class="card-body">
                         <form action="{{ route('user-profile-information.update') }}" method="post" enctype="multipart/form-data">
                             @method('put')
@@ -185,15 +185,9 @@
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        <div class="row align-items-center">
-                            <div class="col-8">
-                                <h3 class="mb-0">Ganti Kata Sandi </h3>
-                            </div>
-                        </div>
-                    </div>
+                <div class="card mb-3">
                     <div class="card-body">
+                        <h6 class="heading-small text-muted mb-4">Ganti Kata Sandi</h6>
                         <form action="{{ $user->password == '' ? route('profile.password') : route('user-password.update') }}" method="post">
                             @method('put')
                             @csrf

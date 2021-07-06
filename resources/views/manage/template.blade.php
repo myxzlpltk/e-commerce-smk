@@ -10,9 +10,6 @@
 @section('actions')
 @endsection
 
-@section('card-stats')
-@endsection
-
 @section('content')
 @endsection
 

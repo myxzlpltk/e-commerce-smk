@@ -10,27 +10,24 @@
 @section('actions')
 @endsection
 
-@section('card-stats')
-@endsection
-
 @section('content')
     <div class="row">
         <div class="col-md-4 col-lg-3">
-            <div class="card">
+            <div class="card mb-3">
                 <img src="{{ asset('storage/products/'.$product->image) }}" alt="" class="card-img-top">
 
                 <div class="card-body">
-                    <h5 class="h3 card-title mb-0">{{ $product->name }}</h5>
-                    <small class="text-muted">{{ $product->description }}</small>
-                    <p class="card-text font-weight-bold mt-4">{{ App\Helpers\Helper::idr($product->priceAfterDiscount) }}</p>
+                    <h5 class="card-title">{{ $product->name }}</h5>
+                    <p class="small text-muted">{{ $product->description }}</p>
+                    <p class="card-text font-weight-bold mb-0">{{ App\Helpers\Helper::idr($product->priceAfterDiscount) }}</p>
                     @if($product->discount > 0)
-                    <span class="badge badge-default badge-lg bg-gradient-orange">Diskon {{ $product->discount }}% Off</span>
+                    <span class="badge badge-warning badge-lg">Diskon {{ $product->discount }}% Off</span>
                     @endif
                 </div>
             </div>
 
             @can('update', $product)
-            <div class="card">
+            <div class="card mb-3">
                 <div class="card-body">
                     <h5 class="h3 card-title">Stok Tersedia</h5>
                     <form action="{{ route('manage.products.update-stock', $product) }}" method="post">
@@ -58,9 +55,9 @@
             @endcan
         </div>
         <div class="col-md-8 col-lg-9">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between">
-                    <h5 class="h3 mb-0">Info Produk</h5>
+            <div class="card mb-3">
+                <div class="card-header py-3 d-flex justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-info-circle fa-fw"></i> Informasi Produk</h6>
                     <div>
                         @can('update', $product)
                         <a href="{{ route('manage.products.edit', $product) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit fa-fw"></i> Edit</a>

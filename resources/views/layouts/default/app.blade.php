@@ -68,9 +68,9 @@
     </div>
     @stack('modals')
 
-    <script src="{{ asset('vendor/jquery/dist/modernizr-3.5.0.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery/modernizr-3.5.0.min.js') }}"></script>
     <!-- Jquery, Popper, Bootstrap -->
-    <script src="{{ asset('vendor/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/popperjs/popper.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <!-- Jquery Mobile Menu -->

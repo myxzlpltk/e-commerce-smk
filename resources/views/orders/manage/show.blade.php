@@ -10,13 +10,10 @@
 @section('actions')
 @endsection
 
-@section('card-stats')
-@endsection
-
 @section('content')
     <div class="row">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card mb-3">
                 <div class="card-body">
                     <dl>
                         <dt>Nomor Pesanan</dt>
@@ -116,7 +113,7 @@
             <x-bank-card :bank="$order->seller->bank" :number="$order->seller->account_number" :name="$order->seller->account_name" />
         </div>
     </div>
-    <div class="card">
+    <div class="card mb-3">
         <div class="card-body">
             <h3><i class="fa fa-list fa-fw"></i> Daftar Produk</h3>
             @foreach($order->details as $detail)
@@ -126,7 +123,7 @@
         </div>
     </div>
 
-    <div class="card">
+    <div class="card mb-3">
         <div class="card-body">
             <h3><i class="fa fa-shipping-fast fa-fw"></i> Pengiriman</h3>
             <p class="mb-0">Dikirim kepada <b class="font-weight-bold">{{ $order->buyer->user->name }}</b></p>
@@ -135,7 +132,7 @@
         </div>
     </div>
 
-    <div class="card">
+    <div class="card mb-3">
         <div class="card-body">
             <h3><i class="fa fa-history fa-fw"></i> Pelacakan</h3>
 

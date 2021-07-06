@@ -1,117 +1,78 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="ltr">
+<html lang="id">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Katalog Online">
+	<meta name="author" content="Wahyu Nur Hidayat">
+	<link rel="icon" href="https://um.ac.id/wp-content/uploads/2020/08/cropped-Lambang-UM-32x32.png" sizes="32x32" />
+	<link rel="icon" href="https://um.ac.id/wp-content/uploads/2020/08/cropped-Lambang-UM-192x192.png" sizes="192x192" />
+	<link rel="apple-touch-icon" href="https://um.ac.id/wp-content/uploads/2020/08/cropped-Lambang-UM-180x180.png" />
+	<meta name="msapplication-TileImage" content="https://um.ac.id/wp-content/uploads/2020/08/cropped-Lambang-UM-270x270.png" />
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+	<title>{{ config('app.name') }} - @yield('title', 'Halaman Kosong')</title>
 
-    <title>{{ config('app.name', 'e-Commerce SMK') }} - @yield('title', 'Title')</title>
+	<link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+	<link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 
-    <!-- Favicon -->
-    <link href="{{ asset('favicon.ico') }}" rel="shortcut icon" type="image/ico">
+	@stack('stylesheets')
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-
-    <!-- Icons -->
-    <link href="{{ asset('vendor/nucleo/css/nucleo.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
-
-    <!-- Custom Stylesheets -->
-    @stack('stylesheets')
-
-    <!-- Argon CSS -->
-    <link type="text/css" href="{{ asset('css/argon.min.css') }}" rel="stylesheet">
-
-    <style>
-        .breadcrumb-item+.breadcrumb-item::before{
-            content: '/';
-        }
-    </style>
 </head>
-<body>
+<body id="page-top">
 
-<!-- Sidenav -->
-@include('layouts.console.sidenav')
-<!-- Main content -->
-<div class="main-content" id="panel">
-    <!-- Topnav -->
-    <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Navbar links -->
-                <ul class="navbar-nav align-items-center ml-md-auto">
-                    <li class="nav-item d-xl-none">
-                        <!-- Sidenav toggler -->
-                        <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin" data-target="#sidenav-main">
-                            <div class="sidenav-toggler-inner">
-                                <i class="sidenav-toggler-line"></i>
-                                <i class="sidenav-toggler-line"></i>
-                                <i class="sidenav-toggler-line"></i>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <ul class="navbar-nav align-items-center ml-auto ml-md-0">
-                    @include('layouts.login-button')
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- Header -->
-    <!-- Header -->
-    <div class="header bg-primary pb-6">
-        <div class="container-fluid">
-            <div class="header-body">
-                <div class="row align-items-center py-4">
-                    <div class="col-lg-6 col-7">
-                        <h6 class="h2 text-white d-inline-block mb-0">@yield('title', 'Judul')</h6>
-                        <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
-                            @yield('breadcrumbs')
-                        </nav>
-                    </div>
-                    <div class="col-lg-6 col-5 text-right">
-                        @yield('actions')
-                    </div>
-                </div>
-                <!-- Card stats -->
-                @yield('card-stats')
-            </div>
-        </div>
-    </div>
-    <!-- Page content -->
-    <div class="container-fluid mt--6">
-        @include('layouts.flash')
-        @yield('content')
-        <!-- Footer -->
-        @include('layouts.console.footer')
-    </div>
-</div>
+@hasSection('simple')
+	@yield('simple')
+@else
+	<div id="wrapper">
 
-<!-- Modals -->
-@stack('modals')
+		@include('layouts.console.sidebar')
 
-<!-- Core -->
-<script src="{{ asset('vendor/jquery/dist/jquery.min.js') }}"></script>
-<script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+		<div id="content-wrapper" class="d-flex flex-column">
+			<div id="content">
+				@include('layouts.console.topbar')
 
-<!-- JSCookie -->
-<script src="{{ asset('vendor/js-cookie/js.cookie.js') }}"></script>
+				<div class="container-fluid">
+					<div class="d-sm-flex align-items-center justify-content-between mb-3">
+						<h1 class="h3 mb-0 text-gray-800">@yield('title', 'Halaman Kosong')</h1>
+						<div>
+							@yield('actions')
+						</div>
+					</div>
 
-<script src="{{ asset('vendor/jquery.scrollbar/jquery.scrollbar.min.js') }}"></script>
-<script src="{{ asset('vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js') }}"></script>
+                    @hasSection('breadcrumbs')
+                    <div class="mb-4">
+                        @yield('breadcrumbs')
+					</div>
+                    @endif
 
-<!-- Custom Scripts -->
-<script src="{{ asset('vendor/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
+					@include('layouts.console.flash')
+
+					@yield('content')
+				</div>
+
+			</div>
+
+			@include('layouts.console.footer')
+		</div>
+	</div>
+
+	<a class="scroll-to-top rounded" href="#page-top">
+		<i class="fas fa-angle-up"></i>
+	</a>
+
+	@include('layouts.console.logout-modal')
+@endif
+
+<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+<script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+<script src="{{ asset('js/admin.js') }}"></script>
+
 @stack('scripts')
 
-<!-- Argon JS -->
-<script src="{{ asset('js/argon.min.js') }}"></script>
-
-<!-- App JS -->
-<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
-

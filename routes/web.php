@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function (){
         Route::resource('buyers', Manage\BuyerController::class, ['as' => 'manage'])->only(['index']);
         Route::resource('sellers', Manage\SellerController::class, ['as' => 'manage'])->only(['index']);
 
-        Route::resource('orders', OrderController::class, ['as' => 'manage'])->only(['index', 'show']);
+        Route::resource('orders', Manage\OrderController::class, ['as' => 'manage'])->only(['index', 'show']);
         Route::patch('orders/{order}/payment/deny', [Manage\OrderController::class, 'denyPayment'])->name('manage.order.deny-payment');
         Route::patch('orders/{order}/payment/accept', [Manage\OrderController::class, 'acceptPayment'])->name('manage.order.accept-payment');
         Route::patch('orders/{order}/payment/deliver', [Manage\OrderController::class, 'deliver'])->name('manage.order.deliver');
@@ -65,7 +65,7 @@ Route::middleware('auth')->group(function (){
         Route::patch('orders/{order}/payment/refund', [Manage\OrderController::class, 'refund'])->name('manage.order.refund');
         Route::patch('orders/{order}/payment/refund-complete', [Manage\OrderController::class, 'refundComplete'])->name('manage.order.refund-complete');
 
-        Route::resource('products', ProductController::class, ['as' => 'manage']);
+        Route::resource('products', Manage\ProductController::class, ['as' => 'manage']);
     });
 
     Route::middleware('can:isSellerHasStore')->prefix('manage')->group(function (){

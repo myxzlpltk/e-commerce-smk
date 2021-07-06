@@ -8,7 +8,7 @@
 @section('content')
     <!-- Hero Area Start-->
     <div class="slider-area ">
-        <div class="single-slider slider-height2 d-flex align-items-center">
+        <div class="single-slider slider-height2 d-flex align-items-center" style="background-image: url('{{ asset('storage/banners/'.$seller->banner) }}')">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">

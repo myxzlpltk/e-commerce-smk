@@ -1,4 +1,4 @@
-<div class="card bg-gradient-primary">
+<div class="card mb-3 bg-gradient-primary">
     <div class="card-body">
         <div class="row justify-content-between align-items-center">
             <div class="col">

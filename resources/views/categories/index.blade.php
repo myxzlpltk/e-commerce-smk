@@ -8,9 +8,6 @@
     <link rel="stylesheet" href="{{ asset('vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
 @endpush
 
-@section('card-stats')
-@endsection
-
 @section('content')
     <div class="card">
         <div class="card-header d-flex justify-content-between">
