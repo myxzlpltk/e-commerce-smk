@@ -95,47 +95,14 @@ class OrderPolicy
     }
 
     /**
-     * Accept Payment by Seller
-     *
-     * @param User $user
-     * @param Order $order
-     */
-    public function acceptPayment(User $user, Order $order){
-        return $user->isSeller && optional($user->seller)->id == $order->seller_id && $order->status_code == Order::PAYMENT_IN_PROCESS;
-    }
-
-    /**
-     * Deny Payment by Seller
-     *
-     * @param User $user
-     * @param Order $order
-     */
-    public function denyPayment(User $user, Order $order){
-        return $user->isSeller && optional($user->seller)->id == $order->seller_id && $order->status_code == Order::PAYMENT_IN_PROCESS;
-    }
-
-    /**
-     * Set Status to In Delivery
-     *
-     * @param User $user
-     * @param Order $order
-     */
-    public function deliver(User $user, Order $order){
-        return $user->isSeller && optional($user->seller)->id == $order->seller_id && $order->status_code == Order::ORDER_BEING_PROCESSED;
-    }
-
-    /**
      * Delivery Complete
      *
      * @param User $user
      * @param Order $order
      */
     public function deliveryComplete(User $user, Order $order){
-        return (
-                ($user->isSeller && optional($user->seller)->id == $order->seller_id)
-                || ($user->isBuyer && optional($user->buyer)->id == $order->buyer_id)
-            )
-            && $order->status_code == Order::IN_DELIVERY;
+        return ($user->isSeller && optional($user->seller)->id == $order->seller_id)
+            && $order->status_code == Order::ORDER_WAITING;
     }
 
     /**
@@ -149,44 +116,6 @@ class OrderPolicy
                 ($user->isSeller && optional($user->seller)->id == $order->seller_id)
                 || ($user->isBuyer && optional($user->buyer)->id == $order->buyer_id)
             )
-            && ($order->status_code == Order::PAYMENT_PENDING);
-    }
-
-    /**
-     * Request refund by buyer or seller
-     *
-     * @param User $user
-     * @param Order $order
-     */
-    public function requestRefund(User $user, Order $order){
-        return (
-                ($user->isSeller && optional($user->seller)->id == $order->seller_id)
-                || ($user->isBuyer && optional($user->buyer)->id == $order->buyer_id)
-            )
-            && ($order->status_code == Order::PAYMENT_IN_PROCESS);
-    }
-
-    /**
-     * Process refund by buyer or seller
-     *
-     * @param User $user
-     * @param Order $order
-     */
-    public function refund(User $user, Order $order){
-        return ($user->isSeller && optional($user->seller)->id == $order->seller_id)&& $order->status_code == Order::REQUEST_REFUND;
-    }
-
-    /**
-     * Refund complete by seller or user
-     *
-     * @param User $user
-     * @param Order $order
-     */
-    public function refundComplete(User $user, Order $order){
-        return (
-                ($user->isSeller && optional($user->seller)->id == $order->seller_id)
-                || ($user->isBuyer && optional($user->buyer)->id == $order->buyer_id)
-            )
-            && $order->status_code == Order::REFUND_BEING_PROCESSED;
+            && ($order->status_code == Order::ORDER_WAITING);
     }
 }

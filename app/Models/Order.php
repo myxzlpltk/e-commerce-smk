@@ -9,30 +9,14 @@ class Order extends Model
 {
     use HasFactory;
 
-    const PAYMENT_PENDING = 1;
-    const PAYMENT_IN_PROCESS = 2;
-    const ORDER_BEING_PROCESSED = 3;
-    const IN_DELIVERY = 4;
-    const ORDER_COMPLETED = 5;
-    const CANCELED = 6;
-    const REQUEST_REFUND = 7;
-    const REFUND_BEING_PROCESSED = 8;
-    const REFUND_COMPLETED = 9;
+    const ORDER_WAITING = 1;
+    const ORDER_COMPLETED = 2;
+    const CANCELED = 3;
 
     const status = [
-        self::PAYMENT_PENDING => 'Menunggu Pembayaran',
-        self::PAYMENT_IN_PROCESS => 'Pembayaran Diproses',
-        self::ORDER_BEING_PROCESSED => 'Pesanan Diproses',
-        self::IN_DELIVERY => 'Sedang Pengantaran',
+        self::ORDER_WAITING => 'Menunggu Konfirmasi',
         self::ORDER_COMPLETED => 'Pesanan Selesai',
         self::CANCELED => 'Dibatalkan',
-        self::REQUEST_REFUND => 'Meminta Pengembalian Dana',
-        self::REFUND_BEING_PROCESSED => 'Dana Sedang Dikembalikan',
-        self::REFUND_COMPLETED => 'Dana Telah Dikembalikan',
-    ];
-
-    protected $attributes = [
-        'payment_proof' => null
     ];
 
     public function buyer(){
@@ -49,10 +33,6 @@ class Order extends Model
 
     public function tracks(){
         return $this->hasMany('App\Models\Track');
-    }
-
-    public function getTotalAttribute(){
-        return $this->details->sum('subtotal');
     }
 
     public function getNoInvoiceAttribute(){

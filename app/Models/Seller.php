@@ -9,10 +9,6 @@ class Seller extends Model{
 
     use HasFactory;
 
-    public function bank(){
-        return $this->belongsTo('App\Models\Bank');
-    }
-
     public function user(){
         return $this->morphOne('App\Models\User',__FUNCTION__, 'role', 'id', 'user_id');
     }
@@ -27,5 +23,10 @@ class Seller extends Model{
 
     public function orders(){
         return $this->hasMany('App\Models\Order');
+    }
+
+    public function successOrders(){
+        return $this->hasMany('App\Models\Order')
+            ->where('status_code', Order::ORDER_COMPLETED);
     }
 }

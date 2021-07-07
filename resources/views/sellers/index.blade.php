@@ -19,6 +19,7 @@
                         <th>Nama</th>
                         <th>Email</th>
                         <th>Terdaftar</th>
+                        <th>Total Pendapatan</th>
                         <th>Aksi</th>
                     </tr>
                     </thead>
@@ -46,6 +47,7 @@
                                 @endif
                             </td>
                             <td>{{ $user->created_at->format('d/m/Y') }}</td>
+                            <td>{{ \App\Helpers\Helper::idr($user->seller->success_orders_sum_total) }}</td>
                             <td>
                                 <a href="{{ route('manage.users.show', $user) }}" class="table-action" data-toggle="tooltip" title="Lihat">
                                     <i class="fas fa-eye"></i>

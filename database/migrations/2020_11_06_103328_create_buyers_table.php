@@ -18,9 +18,6 @@ class CreateBuyersTable extends Migration
             $table->foreignId('user_id');
             $table->text('address');
             $table->string('phone_number');
-            $table->foreignId('bank_id');
-            $table->string('account_number', 30);
-            $table->string('account_name');
             $table->timestamps();
         });
     }

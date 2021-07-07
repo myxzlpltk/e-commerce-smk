@@ -21,9 +21,6 @@ class CreateSellersTable extends Migration
             $table->text('address');
             $table->string('logo');
             $table->string('banner');
-            $table->foreignId('bank_id');
-            $table->string('account_number', 30);
-            $table->string('account_name');
             $table->timestamps();
         });
     }

@@ -19,7 +19,9 @@ class SellerController extends Controller{
     public function index(){
         Gate::authorize('view-any', Seller::class);
 
-        $sellers = User::with('seller')
+        $sellers = User::with(['seller' => function($query){
+                return $query->withSum('successOrders', 'total');
+            }])
             ->where('role', 'seller')
             ->get();
 

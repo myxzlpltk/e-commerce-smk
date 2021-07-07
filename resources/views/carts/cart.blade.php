@@ -12,7 +12,7 @@
         @include('layouts.flash')
     </div>
 
-    <section class="cart_area">
+    <section class="cart_area py-5">
         <div class="container">
             <h1 class="text-center">Keranjang Saya</h1>
 
@@ -89,7 +89,7 @@
                         </tbody>
                     </table>
                     <div class="checkout_btn_inner float-right">
-                        <a class="btn_1 checkout_btn_1" href="{{ route('orders.create', $seller) }}">Bayar</a>
+                        <a class="btn_1 checkout_btn_1" href="{{ route('orders.create', $seller) }}">Pesan</a>
                     </div>
 
                 </div>

@@ -19,11 +19,7 @@ class DashboardController extends Controller{
                 'stat_product' => Product::count(),
                 'stat_category' => Category::count(),
                 'stat_transaction' => Order::count(),
-                'stat_canceled' => Order::whereIn('status_code', [
-                    Order::CANCELED,
-                    Order::REFUND_BEING_PROCESSED,
-                    Order::REFUND_COMPLETED,
-                ])->count(),
+                'stat_canceled' => Order::where('status_code', Order::CANCELED)->count(),
                 'sells' => $this->sells(new Order()),
                 'qualities' => $this->qualities(new Order()),
             ]);
@@ -31,22 +27,13 @@ class DashboardController extends Controller{
         elseif(Gate::allows('isSellerHasStore')){
             return view('manage.seller', [
                 'orders' => auth()->user()->seller->orders()->with(['details','buyer.user'])->whereIn('status_code', [
-                    Order::PAYMENT_PENDING,
-                    Order::PAYMENT_IN_PROCESS,
-                    Order::ORDER_BEING_PROCESSED,
-                    Order::IN_DELIVERY,
-                    Order::REQUEST_REFUND,
-                    Order::REFUND_BEING_PROCESSED,
+                    Order::ORDER_WAITING,
                 ])->get(),
                 'seller' => auth()->user()->seller,
                 'stat_product' => auth()->user()->seller->products()->count(),
                 'stat_category' => auth()->user()->seller->categories()->count(),
                 'stat_transaction' => auth()->user()->seller->orders()->count(),
-                'stat_canceled' => auth()->user()->seller->orders()->whereIn('status_code', [
-                    Order::CANCELED,
-                    Order::REFUND_BEING_PROCESSED,
-                    Order::REFUND_COMPLETED,
-                ])->count(),
+                'stat_canceled' => auth()->user()->seller->orders()->where('status_code', Order::CANCELED)->count(),
                 'sells' => $this->sells($request->user()->seller->orders()),
                 'qualities' => $this->qualities($request->user()->seller->orders()),
             ]);
@@ -66,11 +53,10 @@ class DashboardController extends Controller{
                 'month' => $start->shortMonthName,
                 'start' => $start,
                 'end' => $end,
-                'stat' => $query->with('details')
+                'stat' => $query
                     ->where('status_code', Order::ORDER_COMPLETED)
                     ->where('created_at', '>=', $start)
                     ->where('created_at', '<=', $end)
-                    ->get()
                     ->sum('total')
             ]));
         }
@@ -89,7 +75,7 @@ class DashboardController extends Controller{
                 ->where('created_at', '>=', $start)
                 ->where('created_at', '<=', $end)
                 ->count();
-            $failed = $query->where('status_code', Order::REFUND_COMPLETED)
+            $failed = $query->where('status_code', Order::CANCELED)
                 ->where('created_at', '>=', $start)
                 ->where('created_at', '<=', $end)
                 ->count();

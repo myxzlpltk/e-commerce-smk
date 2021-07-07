@@ -13,27 +13,21 @@ use Illuminate\Support\Facades\Gate;
 class OrderController extends Controller{
 
     public function index(Request $request, $type = "pending"){
-        if($type == "pending"){
-            $statusCodes = [1,2];
-        }
-        elseif($type == "process"){
-            $statusCodes = [3,4];
-        }
-        elseif($type == "complete"){
-            $statusCodes = [5];
+        if($type == "complete"){
+            $statusCodes = Order::ORDER_COMPLETED;
         }
         elseif($type == "cancel"){
-            $statusCodes = [6,7,8];
+            $statusCodes = Order::CANCELED;
         }
         else{
-            return abort(404);
+            $statusCodes = Order::ORDER_WAITING;
         }
 
         return view('orders.index', [
             'orders' => $request->user()->buyer
                 ->orders()
                 ->with(['seller','details.product'])
-                ->whereIn('status_code', $statusCodes)
+                ->where('status_code', $statusCodes)
                 ->orderByDesc('created_at')
                 ->paginate(10)
         ]);
@@ -62,8 +56,7 @@ class OrderController extends Controller{
             $order = new Order;
             $order->buyer_id = $buyer->id;
             $order->seller_id = $seller->id;
-            $order->address = $buyer->address;
-            $order->status_code = Order::PAYMENT_PENDING;
+            $order->status_code = Order::ORDER_WAITING;
             $order->save();
 
             foreach ($carts as $cart){
@@ -81,13 +74,13 @@ class OrderController extends Controller{
             DB::commit();
 
             return redirect()->route('orders.show', $order)->with([
-                'success' => 'Silahkan kamu melakukan pembayaran ke rekening toko'
+                'success' => 'Silahkan kamu menghubungi penjual untuk melanjutkan transaksi.'
             ]);
         } catch (\Exception $e){
             DB::rollBack();
 
             return redirect()->route('carts.index')->with([
-                'error' => 'Terjadi kesalahan pada sistem. Coba lagi nanti.'.$e->getMessage()
+                'error' => 'Terjadi kesalahan pada sistem. Coba lagi nanti.'
             ]);
         }
     }
@@ -98,26 +91,5 @@ class OrderController extends Controller{
         return view('orders.show', [
             'order' => $order
         ]);
-    }
-
-    public function updatePayment(Request $request, Order $order){
-        Gate::authorize('update', $order);
-
-        if($order->status_code == Order::PAYMENT_PENDING || $order->status_code == Order::PAYMENT_IN_PROCESS){
-            $request->validate([
-                'payment_proof' => 'required|image'
-            ]);
-
-            $order->status_code = Order::PAYMENT_IN_PROCESS;
-            $order->payment_proof = basename($request->file('payment_proof')->store('payments'));
-            $order->save();
-
-            return redirect()->route('orders.show', $order)->with([
-                'success' => 'Bukti pembayaran berhasil di upload'
-            ]);
-        }
-        else{
-            return abort(404);
-        }
     }
 }

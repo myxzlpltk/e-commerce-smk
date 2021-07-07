@@ -27,47 +27,14 @@
                         </dd>
                         <dt>Tanggal Pembelian</dt>
                         <dd>{{ $order->created_at->format('d M Y H:i') }}</dd>
-                        <dt>Bukti Pembayaran</dt>
-                        @if($order->payment_proof)
-                            <dd><a href="{{ asset('storage/payments/'.$order->payment_proof) }}" target="_blank">Klik Disini</a></dd>
-                        @else
-                            <dd><em>Belum ada bukti pembayaran</em></dd>
-                        @endif
                     </dl>
                 </div>
-                @can('accept-payment', $order)
-                <div class="card-footer">
-                    <form class="d-inline" action="{{ route('manage.order.accept-payment', $order) }}" method="post">
-                        @csrf
-                        @method('PATCH')
-                        <a href="javascript:void(0)" class="btn btn-success btn-sm btn-alert"><i class="fa fa-check fa-fw"></i> Terima Pembayaran</a>
-                    </form>
-                </div>
-                @endcan
-                @can('deny-payment', $order)
-                <div class="card-footer">
-                    <form class="d-inline" action="{{ route('manage.order.deny-payment', $order) }}" method="post">
-                        @csrf
-                        @method('PATCH')
-                        <a href="javascript:void(0)" class="btn btn-danger btn-sm btn-alert"><i class="fa fa-ban fa-fw"></i> Tolak Pembayaran</a>
-                    </form>
-                </div>
-                @endcan
-                @can('deliver', $order)
-                <div class="card-footer">
-                    <form class="d-inline" action="{{ route('manage.order.deliver', $order) }}" method="post">
-                        @csrf
-                        @method('PATCH')
-                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-alert"><i class="fa fa-shipping-fast fa-fw"></i> Kirim Pesanan</a>
-                    </form>
-                </div>
-                @endcan
                 @can('delivery-complete', $order)
                 <div class="card-footer">
                     <form class="d-inline" action="{{ route('manage.order.delivery-complete', $order) }}" method="post">
                         @csrf
                         @method('PATCH')
-                        <a href="javascript:void(0)" class="btn btn-success btn-sm btn-alert"><i class="fa fa-check fa-fw"></i> Pesanan Telah Dikirim</a>
+                        <button type="submit" class="btn btn-success btn-sm btn-alert" onclick="return window.confirm('Apakah anda yakin?')"><i class="fa fa-check fa-fw"></i> Pesanan Telah Selesai</button>
                     </form>
                 </div>
                 @endcan
@@ -76,76 +43,53 @@
                     <form class="d-inline" action="{{ route('manage.order.cancel', $order) }}" method="post">
                         @csrf
                         @method('PATCH')
-                        <a href="javascript:void(0)" class="btn btn-danger btn-sm btn-alert"><i class="fa fa-ban fa-fw"></i> Batalkan Pesanan</a>
-                    </form>
-                </div>
-                @endcan
-                @can('request-refund', $order)
-                <div class="card-footer">
-                    <form class="d-inline" action="{{ route('manage.order.request-refund', $order) }}" method="post">
-                        @csrf
-                        @method('PATCH')
-                        <a href="javascript:void(0)" class="btn btn-danger btn-sm btn-alert"><i class="fa fa-ban fa-fw"></i> Batalkan Pesanan dan Kembalikan Dana</a>
-                    </form>
-                </div>
-                @endcan
-                @can('refund', $order)
-                <div class="card-footer">
-                    <form class="d-inline" action="{{ route('manage.order.refund', $order) }}" method="post">
-                        @csrf
-                        @method('PATCH')
-                        <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-alert"><i class="fa fa-refresh fa-fw"></i> Dana Sedang Dikembalikan</a>
-                    </form>
-                </div>
-                @endcan
-                @can('refund-complete', $order)
-                <div class="card-footer">
-                    <form class="d-inline" action="{{ route('manage.order.refund-complete', $order) }}" method="post">
-                        @csrf
-                        @method('PATCH')
-                        <a href="javascript:void(0)" class="btn btn-success btn-sm btn-alert"><i class="fa fa-check fa-fw"></i> Dana Telah Saya Kembalikan</a>
+                        <button type="submit" class="btn btn-danger btn-sm btn-alert" onclick="return window.confirm('Apakah anda yakin?')"><i class="fa fa-ban fa-fw"></i> Batalkan Pesanan</button>
                     </form>
                 </div>
                 @endcan
             </div>
         </div>
         <div class="col-md-4">
-            <x-bank-card :bank="$order->seller->bank" :number="$order->seller->account_number" :name="$order->seller->account_name" />
+            <div class="card mb-3">
+                <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                    <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-user-tie fa-fw"></i> Info Pembeli</h6>
+                </div>
+                <div class="card-body">
+                    <p class="mb-0">Dikirim kepada <b class="font-weight-bold">{{ $order->buyer->user->name }}</b></p>
+                    <p class="mb-0">{{ $order->buyer->address }}</p>
+                    <p class="mb-0">Telp: +62{{ $order->buyer->phone_number }}</p>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                    <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-history fa-fw"></i> Pelacakan</h6>
+                </div>
+                <div class="card-body">
+                    @foreach($order->tracks->sortBy('created_at') as $track)
+                        <div class="row">
+                            <div class="col-auto">
+                                <p class="mb-0">{{ $track->created_at->format('d F Y H:i') }}</p>
+                            </div>
+                            <div class="col">
+                                <p class="text-dark mb-0">{{ $track->status }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
+
     <div class="card mb-3">
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+            <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-list fa-fw"></i> Daftar Produk</h6>
+        </div>
         <div class="card-body">
-            <h3><i class="fa fa-list fa-fw"></i> Daftar Produk</h3>
             @foreach($order->details as $detail)
-                    <x-order-detail-product :detail="$detail" :action="false" />
+                <x-order-detail-product :detail="$detail" :action="false" />
             @endforeach
             <p>Total belanja <span class="font-weight-bold text-orange">{{ App\Helpers\Helper::idr($order->total) }}</span></p>
-        </div>
-    </div>
-
-    <div class="card mb-3">
-        <div class="card-body">
-            <h3><i class="fa fa-shipping-fast fa-fw"></i> Pengiriman</h3>
-            <p class="mb-0">Dikirim kepada <b class="font-weight-bold">{{ $order->buyer->user->name }}</b></p>
-            <p class="mb-0">{{ $order->buyer->address }}</p>
-            <p class="mb-0">Telp: +62{{ $order->buyer->phone_number }}</p>
-        </div>
-    </div>
-
-    <div class="card mb-3">
-        <div class="card-body">
-            <h3><i class="fa fa-history fa-fw"></i> Pelacakan</h3>
-
-            @foreach($order->tracks->sortBy('created_at') as $track)
-                <div class="row">
-                    <div class="col-auto">
-                        <small class="mb-0">{{ $track->created_at->format('d F Y H:i') }}</small>
-                    </div>
-                    <div class="col">
-                        <p class="mb-0">{{ $track->status }}</p>
-                    </div>
-                </div>
-            @endforeach
         </div>
     </div>
 @endsection

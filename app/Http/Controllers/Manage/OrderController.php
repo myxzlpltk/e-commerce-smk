@@ -66,39 +66,6 @@ class OrderController extends Controller{
         ]);
     }
 
-    public function acceptPayment(Request $request, Order $order){
-        Gate::authorize('accept-payment', $order);
-
-        $order->status_code = Order::ORDER_BEING_PROCESSED;
-        $order->save();
-
-        return redirect()->route('manage.orders.show', $order)->with([
-            'success' => 'Status pesanan berhasil diperbarui.'
-        ]);
-    }
-
-    public function denyPayment(Request $request, Order $order){
-        Gate::authorize('deny-payment', $order);
-
-        $order->status_code = Order::PAYMENT_PENDING;
-        $order->save();
-
-        return redirect()->route('manage.orders.show', $order)->with([
-            'success' => 'Status pesanan berhasil diperbarui.'
-        ]);
-    }
-
-    public function deliver(Request $request, Order $order){
-        Gate::authorize('deliver', $order);
-
-        $order->status_code = Order::IN_DELIVERY;
-        $order->save();
-
-        return redirect()->route('manage.orders.show', $order)->with([
-            'success' => 'Status pesanan berhasil diperbarui.'
-        ]);
-    }
-
     public function deliveryComplete(Request $request, Order $order){
         Gate::authorize('delivery-complete', $order);
 
@@ -114,44 +81,6 @@ class OrderController extends Controller{
         Gate::authorize('cancel', $order);
 
         $order->status_code = Order::CANCELED;
-        $order->save();
-
-        return redirect()->back()->with([
-            'success' => 'Status pesanan berhasil diperbarui.'
-        ]);
-    }
-
-    public function requestRefund(Request $request, Order $order){
-        Gate::authorize('request-refund', $order);
-
-        $order->status_code = Order::REQUEST_REFUND;
-        $order->save();
-
-        if($request->user()->isSeller){
-            $order->status_code = Order::REFUND_BEING_PROCESSED;
-            $order->save();
-        }
-
-        return redirect()->back()->with([
-            'success' => 'Status pesanan berhasil diperbarui.'
-        ]);
-    }
-
-    public function refund(Request $request, Order $order){
-        Gate::authorize('refund', $order);
-
-        $order->status_code = Order::REFUND_BEING_PROCESSED;
-        $order->save();
-
-        return redirect()->back()->with([
-            'success' => 'Status pesanan berhasil diperbarui.'
-        ]);
-    }
-
-    public function refundComplete(Request $request, Order $order){
-        Gate::authorize('refund-complete', $order);
-
-        $order->status_code = Order::REFUND_COMPLETED;
         $order->save();
 
         return redirect()->back()->with([

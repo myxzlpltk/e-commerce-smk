@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Bank;
 use App\Models\Seller;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -28,9 +27,6 @@ class SellerFactory extends Factory
             'address' => $this->faker->address,
             'logo' => 'default.jpg',
             'banner' => 'default.jpg',
-            'bank_id' => Bank::inRandomOrder()->first()->id,
-            'account_number' => $this->faker->creditCardNumber,
-            'account_name' => $this->faker->name,
         ];
     }
 }

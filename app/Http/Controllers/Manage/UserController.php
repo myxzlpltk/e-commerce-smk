@@ -11,6 +11,10 @@ class UserController extends Controller{
     public function show(User $user){
         if($user->isAdmin) return abort(403);
 
+        if($user->isSeller){
+            $user->load('seller.successOrders');
+        }
+
         return view('users.show', [
             'user' => $user
         ]);

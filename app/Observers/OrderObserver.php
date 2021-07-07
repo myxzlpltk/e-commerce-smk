@@ -45,13 +45,6 @@ class OrderObserver
 
             $order->buyer->user->notify(new UpdateStatusOrder($order));
         }
-
-        if($order->wasChanged('payment_proof')){
-            $oldImage = $order->getOriginal('payment_proof');
-            if(!empty($oldImage) && Storage::exists("payments/$oldImage")){
-                Storage::delete("payments/$oldImage");
-            }
-        }
     }
 
     /**

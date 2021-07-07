@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Bank;
 use App\Models\Buyer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -25,9 +24,6 @@ class BuyerFactory extends Factory
         return [
             'address' => $this->faker->address,
             'phone_number' => $this->faker->phoneNumber,
-            'bank_id' => Bank::inRandomOrder()->first()->id,
-            'account_number' => $this->faker->creditCardNumber,
-            'account_name' => $this->faker->name,
         ];
     }
 }

@@ -17,9 +17,8 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->foreignId('buyer_id');
             $table->foreignId('seller_id');
-            $table->text('address');
             $table->integer('status_code');
-            $table->string('payment_proof')->nullable();
+            $table->unsignedInteger('total')->default(0);
             $table->timestamps();
         });
     }

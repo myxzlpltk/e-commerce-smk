@@ -56,7 +56,7 @@
                             <li data-toggle="tooltip" title="Pesanan Saya">
                                 <a href="{{ route('orders.index') }}">
                                     <span class="fa fa-shipping-fast">
-                                        <small class="badge p-0">{{ Auth::user()->buyer->orders()->whereIn('status_code', [1,2,3,4])->count() }}</small>
+                                        <small class="badge p-0">{{ Auth::user()->buyer->orders()->where('status_code', \App\Models\Order::ORDER_WAITING)->count() }}</small>
                                     </span>
                                 </a>
                             </li>

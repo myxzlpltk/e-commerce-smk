@@ -12,14 +12,11 @@
 
             <h1 class="text-center mb-4">Pesanan Saya</h1>
 
-            <div class="card">
+            <div class="card mb-3">
                 <div class="card-body">
                     <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <a class="nav-link @if(Request::segment(2) == '') active @else text-dark @endif" href="{{ route('orders.index') }}">Menunggu Pembayaran</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @if(Request::segment(2) == 'process') active @else text-dark @endif" href="{{ route('orders.index', "process") }}">Sedang Proses</a>
+                            <a class="nav-link @if(Request::segment(2) == '') active @else text-dark @endif" href="{{ route('orders.index') }}">Menunggu Konfirmasi</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link @if(Request::segment(2) == 'complete') active @else text-dark @endif" href="{{ route('orders.index', "complete") }}">Selesai</a>
@@ -32,23 +29,23 @@
             </div>
 
             @forelse($orders as $order)
-            <div class="card">
+            <div class="card mb-3">
                 <div class="card-header py-1 px-3">
                     <small class="mb-0">{{ $order->created_at->format('d M Y') }}</small>
                 </div>
                 <div class="card-body p-3">
                     <div class="row">
                         <div class="col-md-4">
-                            <h4 class="mb-0"><a href="{{ route('sellers.show', $order->seller) }}">{{ $order->seller->store_name }}</a></h4>
-                            <small>{{ $order->no_invoice }}</small>
+                            <h5 class="mb-0"><a href="{{ route('sellers.show', $order->seller) }}" class="text-primary">{{ $order->seller->store_name }}</a></h5>
+                            <p>{{ $order->no_invoice }}</p>
                         </div>
                         <div class="col-md-4 border-left">
                             <h5 class="mb-0">Status</h5>
-                            <h4 class="mb-0 text-blue"><strong>{{ $order->status }}</strong></h4>
+                            <p class="mb-0 text-blue"><strong>{{ $order->status }}</strong></p>
                         </div>
                         <div class="col-md-4 border-left">
                             <h5 class="mb-0">Total Belanja</h5>
-                            <h4 class="mb-0 text-orange"><strong>{{ App\Helpers\Helper::idr($order->total) }}</strong></h4>
+                            <p class="mb-0 text-orange"><strong>{{ App\Helpers\Helper::idr($order->total) }}</strong></p>
                         </div>
                     </div>
                     <hr class="my-3" />
@@ -62,13 +59,13 @@
                             @endif
                         @endforeach
                     </div>
-                    <a class="d-block text-center collapse-details mb-0" data-toggle="collapse" href="#collapse-details-{{ $order->id }}" role="button">
+                    <a class="d-block text-center collapse-details mb-0 text-primary" data-toggle="collapse" href="#collapse-details-{{ $order->id }}" role="button">
                         <small><span>Lihat</span> {{ $order->details->count()-1 }} produk lainnya</small>
                     </a>
                     @endif
                 </div>
                 <div class="card-footer px-3 py-2">
-                    <a href="{{ route('orders.show', $order) }}" class="small"><i class="fa fa-eye fa-fw"></i> Lihat Detail Pesanan</a>
+                    <a href="{{ route('orders.show', $order) }}" class="text-primary small"><i class="fa fa-eye fa-fw"></i> Lihat Detail Pesanan</a>
                 </div>
             </div>
             @empty
