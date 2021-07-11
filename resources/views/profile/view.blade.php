@@ -19,17 +19,6 @@
                                 <span class="d-block mb-1">{{ $user->name }}</span>
                                 <small class="h4 font-weight-light text-muted">{{ __($user->role) }}</small>
                             </h5>
-                            <div class="mt-3">
-                                @empty($user->google_email)
-                                    <a href="{{ route('profile.google') }}" class="btn btn-sm btn-danger btn_3 btn-block mr-4"><i class="fab fa-google fa-fw"></i> Hubungkan</a>
-                                @else
-                                    <hr/>
-                                    <p class="card-title font-weight-bold">Akun Google</p>
-                                    <img src="{{ route('profile.google.avatar') }}" alt="" class="avatar rounded-circle" data-toggle="tooltip" title="{{ $user->google_email }}">
-                                    <p>{{ $user->google_name }}</p>
-                                    <a href="{{ route('profile.google.disconnect') }}" class="btn btn-sm btn-danger btn-block mr-4"><i class="fab fa-google fa-fw"></i> Putuskan</a>
-                                @endempty
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -177,7 +166,7 @@
                 <div class="card mb-3">
                     <div class="card-body">
                         <h6 class="heading-small text-muted mb-4">Ganti Kata Sandi</h6>
-                        <form action="{{ $user->password == '' ? route('profile.password') : route('user-password.update') }}" method="post">
+                        <form action="{{ route('user-password.update') }}" method="post">
                             @method('put')
                             @csrf
 

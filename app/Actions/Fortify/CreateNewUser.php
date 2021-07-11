@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -30,15 +31,24 @@ class CreateNewUser implements CreatesNewUsers
                 Rule::unique(User::class),
             ],
             'password' => $this->passwordRules(),
+            'g-recaptcha-response' => 'required|string',
         ])->validate();
 
-        $user = new User;
-        $user->name = $input['name'];
-        $user->email = $input['email'];
-        $user->password = Hash::make($input['password']);
-        $user->role = 'buyer';
-        $user->save();
+        $recaptcha = new \ReCaptcha\ReCaptcha(env('RECAPTCHA_SECRET_KEY'));
+        $response = $recaptcha->verify($input['g-recaptcha-response'], request()->ip());
 
-        return $user;
+        if($response->isSuccess()){
+            $user = new User;
+            $user->name = $input['name'];
+            $user->email = $input['email'];
+            $user->password = Hash::make($input['password']);
+            $user->role = 'buyer';
+            $user->save();
+
+            return $user;
+        }
+        else{
+            abort(403, 'RECAPTCHA tidak valid');
+        }
     }
 }

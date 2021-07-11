@@ -18,10 +18,6 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 Route::get('/', [HomeController::class, 'welcome'])->name('home');
 
-Route::get('login/google', [LoginController::class, 'redirectToProvider'])->name('login.google');
-Route::get('login/google/callback', [LoginController::class, 'handleProviderCallback'])->name('login.google.callback');
-Route::get('register/google', [RegisterController::class, 'redirectToProvider'])->name('register.google');
-Route::get('register/google/callback', [RegisterController::class, 'handleProviderCallback'])->name('register.google.callback');
 Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 Route::middleware('can:isBuyerOrGuest')->group(function (){
@@ -39,11 +35,6 @@ Route::middleware('auth')->group(function (){
 
     Route::prefix('profile/')->group(function (){
         Route::get('/', [ProfileController::class, 'profile'])->name('profile');
-        Route::put('password', [ProfileController::class, 'addPassword'])->name('profile.password');
-        Route::get('google', [ProfileController::class, 'redirectToProvider'])->name('profile.google');
-        Route::get('google/avatar', [ProfileController::class, 'showAvatar'])->name('profile.google.avatar');
-        Route::get('google/callback', [ProfileController::class, 'handleProviderCallback'])->name('profile.google.callback');
-        Route::get('google/disconnect', [ProfileController::class, 'disconnectProvider'])->name('profile.google.disconnect');
         Route::post('seller', [ProfileController::class, 'updateSeller'])->name('profile.seller')->middleware('can:isSeller');
         Route::post('buyer', [ProfileController::class, 'updateBuyer'])->name('profile.buyer')->middleware('can:isBuyer');
     });

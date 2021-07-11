@@ -53,13 +53,6 @@
                                     <a class="lost_pass" href="{{ route('password.email') }}">forget password?</a>
                                 </div>
                             </form>
-
-                            <hr/>
-
-                            <a href="{{ route('login.google') }}" class="btn_2 w-100">
-                                <span class="btn-inner--icon mr-4"><img src="{{ url('icons/google.svg') }}"></span>
-                                <span class="btn-inner--text">Masuk menggunakan akun Google</span>
-                            </a>
                         </div>
                     </div>
                 </div>

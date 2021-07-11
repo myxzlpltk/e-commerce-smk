@@ -52,17 +52,13 @@
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="col-md-12">
+                                    <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
+                                </div>
                                 <div class="col-md-12 form-group">
                                     <button type="submit" value="submit" class="btn_3">Mendaftar</button>
                                 </div>
                             </form>
-
-                            <hr/>
-
-                            <a href="{{ route('register.google') }}" class="btn_2 w-100">
-                                <span class="btn-inner--icon mr-4"><img src="{{ url('icons/google.svg') }}"></span>
-                                <span class="btn-inner--text">Daftar menggunakan akun Google</span>
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -72,4 +68,5 @@
 @endsection
 
 @push('scripts')
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 @endpush

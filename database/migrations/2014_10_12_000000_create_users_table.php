@@ -21,9 +21,6 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->enum('role', ['admin', 'buyer', 'seller']);
             $table->string('avatar')->default('default.jpg');
-            $table->text('google_email')->nullable();
-            $table->text('google_name')->nullable();
-            $table->text('google_avatar')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

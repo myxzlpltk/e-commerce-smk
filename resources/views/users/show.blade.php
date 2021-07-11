@@ -22,16 +22,6 @@
                             <span class="d-block mb-1">{{ $user->name }}</span>
                             <small class="font-weight-light text-muted">{{ __($user->role) }}</small>
                         </h5>
-                        <div class="mt-3">
-                            @empty($user->google_email)
-                                <button type="button" class="btn btn-sm btn-danger btn-block mr-4"><i class="fab fa-google fa-fw"></i> Tidak Terhubung</button>
-                            @else
-                                <hr/>
-                                <p class="card-title font-weight-bold">Akun Google</p>
-                                <img src="{{ $user->google_avatar }}" alt="" class="avatar rounded-circle" data-toggle="tooltip" title="{{ $user->google_email }}">
-                                <p>{{ $user->google_name }}</p>
-                            @endempty
-                        </div>
                     </div>
                 </div>
             </div>
