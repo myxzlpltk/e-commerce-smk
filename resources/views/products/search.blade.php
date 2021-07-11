@@ -78,7 +78,7 @@
                     @include('layouts.flash')
                 </div>
 
-                <div class="popular-items">
+                <div class="col-12 popular-items">
                     <div class="row">
                         @foreach($products as $product)
                         <x-product-card :product="$product" />
