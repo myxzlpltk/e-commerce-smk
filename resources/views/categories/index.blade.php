@@ -32,7 +32,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $category->name }}</td>
-                            <td>{{ $category->products->count() }} Produk</td>
+                            <td>{{ $category->products_count }} Produk</td>
                             <td>
                                 @can('update', $category)
                                 <a href="{{ route('manage.categories.edit', $category) }}" class="table-action" data-toggle="tooltip" title="Edit">
@@ -44,9 +44,9 @@
                                 <form class="d-inline" action="{{ route('manage.categories.destroy', $category) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="javascript:void(0)" class="table-action btn-delete" data-toggle="tooltip" title="Hapus">
+                                    <button type="submit" class="table-action btn btn-link btn-delete" data-toggle="tooltip" title="Hapus" onclick="return window.confirm('Apakah anda yakin?')">
                                         <i class="fas fa-trash"></i>
-                                    </a>
+                                    </button>
                                 </form>
                                 @endcan
                             </td>

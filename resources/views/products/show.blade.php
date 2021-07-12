@@ -15,7 +15,7 @@
         <form class="d-inline" action="{{ route('manage.products.destroy', $product) }}" method="post">
             @csrf
             @method('DELETE')
-            <a href="javascript:void(0)" class="btn btn-danger btn-sm btn-delete"><i class="fa fa-trash fa-fw"></i> Hapus</a>
+            <button type="submit" class="btn btn-danger btn-sm btn-delete" onclick="return window.confirm('Apakah anda yakin?')"><i class="fa fa-trash fa-fw"></i> Hapus</button>
         </form>
     @endcan
 @endsection

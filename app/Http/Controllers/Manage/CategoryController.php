@@ -24,7 +24,7 @@ class CategoryController extends Controller{
             'categories' => $request->user()
                 ->seller
                 ->categories()
-                ->with('products')
+                ->withCount('products')
                 ->get()
         ]);
     }
