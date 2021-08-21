@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function (){
 
         Route::get('users/{user}', [Manage\UserController::class, 'show'])->name('manage.users.show');
         Route::resource('buyers', Manage\BuyerController::class, ['as' => 'manage'])->only(['index']);
-        Route::resource('sellers', Manage\SellerController::class, ['as' => 'manage'])->only(['index']);
+        Route::resource('sellers', Manage\SellerController::class, ['as' => 'manage'])->only(['index', 'create', 'store']);
 
         Route::resource('orders', Manage\OrderController::class, ['as' => 'manage'])->only(['index', 'show']);
         Route::patch('orders/{order}/payment/deny', [Manage\OrderController::class, 'denyPayment'])->name('manage.order.deny-payment');

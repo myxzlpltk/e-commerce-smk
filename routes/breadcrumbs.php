@@ -31,6 +31,11 @@ Breadcrumbs::for('manage.sellers.index', function ($trail){
     $trail->parent('home');
     $trail->push('Penjual', route('manage.sellers.index'));
 });
+// Seller > Tambah Penjual
+Breadcrumbs::for('manage.sellers.create', function ($trail){
+    $trail->parent('manage.sellers.index');
+    $trail->push('Tambah Penjual', route('manage.sellers.create'));
+});
 
 // Produk
 Breadcrumbs::for('manage.products.index', function ($trail){

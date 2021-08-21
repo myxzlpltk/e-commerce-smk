@@ -111,7 +111,7 @@
                                             <div class="form-group">
                                                 <label class="form-control-label" for="input-logo">Logo Toko <i class="fa fa-info-circle fa-fw" data-toggle="tooltip" title="Rasio 1:1"></i></label>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input @error('logo') is-invalid @enderror" id="input-logo" name="logo" accept="image/*">
+                                                    <input type="file" class="custom-file-input @error('logo') is-invalid @enderror" id="input-logo" name="logo" accept="image/*" @if($user->seller == NULL) required @endif>
                                                     <label class="custom-file-label" for="input-logo">Pilih file</label>
                                                 </div>
                                                 @error('logo')
@@ -121,7 +121,7 @@
                                             <div class="form-group">
                                                 <label class="form-control-label" for="input-banner">Banner Toko <i class="fa fa-info-circle fa-fw" data-toggle="tooltip" title="Rasio 3:2"></i></label>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input @error('banner') is-invalid @enderror" id="input-banner" name="banner" accept="image/*">
+                                                    <input type="file" class="custom-file-input @error('banner') is-invalid @enderror" id="input-banner" name="banner" accept="image/*" @if($user->seller == NULL) required @endif>
                                                     <label class="custom-file-label" for="input-banner">Pilih file</label>
                                                 </div>
                                                 @error('banner')

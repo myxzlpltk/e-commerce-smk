@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}">
 @endpush
 
+@section('actions')
+    @can('create', App\Models\Seller::class)
+        <a href="{{ route('manage.sellers.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus fa-fw"></i> Tambah Data</a>
+    @endcan
+@endsection
+
 @section('content')
     <div class="card mb-3">
         <div class="card-body">
@@ -47,7 +53,7 @@
                                 @endif
                             </td>
                             <td>{{ $user->created_at->format('d/m/Y') }}</td>
-                            <td>{{ \App\Helpers\Helper::idr($user->seller->success_orders_sum_total) }}</td>
+                            <td>{{ \App\Helpers\Helper::idr($user->seller->success_orders_sum_total ?? 0) }}</td>
                             <td>
                                 <a href="{{ route('manage.users.show', $user) }}" class="table-action" data-toggle="tooltip" title="Lihat">
                                     <i class="fas fa-eye"></i>
